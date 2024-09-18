@@ -42,7 +42,7 @@ jobs:
           cp -r output/* .
 
           # Add and commit the changes
-          git add .
+          git add output/*
           git commit -m "Deploy generated files to GitHub Pages"
 
           # Push the changes to 'gh-pages' (force to replace old content)

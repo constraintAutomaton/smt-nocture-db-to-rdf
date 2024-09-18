@@ -37,12 +37,15 @@ jobs:
 
           # Remove all existing files from the branch
           git rm -rf .
+          rm -r target
 
           # Copy the generated output files into the root directory
           cp -r output/* .
 
+          rm -r output
+
           # Add and commit the changes
-          git add output/*
+          git add .
           git commit -m "Deploy generated files to GitHub Pages"
 
           # Push the changes to 'gh-pages' (force to replace old content)

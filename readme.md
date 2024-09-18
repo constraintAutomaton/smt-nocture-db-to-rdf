@@ -38,8 +38,3 @@ Options:
 ```sql
 SELECT name, race, lv FROM demons;
 ```
-
-
-```
-cargo run --release -- -d "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/demon.ttl" -r "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/race.ttl" -v "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl" -g "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl"
-```

@@ -46,4 +46,4 @@ jobs:
           git commit -m "Deploy generated files to GitHub Pages"
 
           # Push the changes to 'gh-pages' (force to replace old content)
-          git push --force origin gh-pages
+          git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages

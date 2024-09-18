@@ -31,8 +31,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Create or checkout the 'gh-pages' branch
-          git branch -D gh-pages
+          # Restart gh-pages branch
+          git branch -D gh-pages || echo "branch gh-pages does not exist"
           git checkout --orphan gh-pages
 
           # Remove all existing files from the branch

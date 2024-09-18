@@ -36,7 +36,7 @@ fn main() {
     )
     .unwrap();
 
-    let smt_game_prefix = MownStr::from_str("#smt3");
+    let smt_game_prefix = MownStr::from_str("smt3");
     let smt_game_iri = game_rdf_file_namespace.get(&smt_game_prefix).unwrap();
     let smt_game_term = SimpleTerm::Iri(smt_game_iri.to_iriref());
 

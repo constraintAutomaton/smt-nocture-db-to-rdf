@@ -60,7 +60,7 @@ impl<'a> DemonTransformer<'a> {
         race_namespace: &'a Namespace<String>,
         game_term: &'a SimpleTerm<'a>,
     ) -> Self {
-        let demon_iri = namespace.get("#Demon").unwrap();
+        let demon_iri = namespace.get("Demon").unwrap();
         let demon_term = SimpleTerm::Iri(demon_iri.to_iriref());
 
         let a_term_iri = IriRef::new(MownStr::from_str(
@@ -72,10 +72,10 @@ impl<'a> DemonTransformer<'a> {
         let name_iri = IriRef::new(MownStr::from_str("https://schema.org/name")).unwrap();
         let name_term = SimpleTerm::Iri(name_iri);
 
-        let race_iri = namespace.get("#isOfRace").unwrap();
+        let race_iri = namespace.get("isOfRace").unwrap();
         let race_term = SimpleTerm::Iri(race_iri.to_iriref());
 
-        let lv_iri = namespace.get("#hasBasedLevel").unwrap();
+        let lv_iri = namespace.get("hasBasedLevel").unwrap();
         let lv_term = SimpleTerm::Iri(lv_iri.to_iriref());
 
         Self {
@@ -169,7 +169,7 @@ pub struct RaceTransformer<'a> {
 }
 impl<'a> RaceTransformer<'a> {
     pub fn new(namespace: &'a Namespace<String>, game_term: &'a SimpleTerm<'a>) -> Self {
-        let race_iri = namespace.get("#Race").unwrap();
+        let race_iri = namespace.get("Race").unwrap();
         let race_term = SimpleTerm::Iri(race_iri.to_iriref());
 
         let a_term_iri = IriRef::new(MownStr::from_str(

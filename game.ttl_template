@@ -1,6 +1,6 @@
 @base <{}> .
 @prefix schema: <https://schema.org/> .
 
-<#smt3> a schema:VideoGame
+<smt3> a schema:VideoGame
     schema:name "Shin Megami Tensei III: Nocturne"
     schema:sameAs <http://dbpedia.org/resource/Shin_Megami_Tensei_III:_Nocturne>

@@ -32,8 +32,8 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
           # Create or checkout the 'gh-pages' branch
-          git fetch origin gh-pages || echo "gh-pages branch does not exist"
-          git checkout gh-pages || git checkout --orphan gh-pages
+          git branch -D gh-pages
+          git checkout --orphan gh-pages
 
           # Remove all existing files from the branch
           git rm -rf .

@@ -36,11 +36,10 @@ jobs:
           git checkout --orphan gh-pages
 
           # Don't ignore index.html
-          git add ./output/index.html
+          git rm --cached ./output/index.html
 
           # Remove all existing files from the branch
-          git rm -f .
-          git rm -rf ./src
+          git rm -rf .
 
            # Restore index.html
           git checkout -- ./output/index.html

@@ -25,13 +25,13 @@ jobs:
 
       # Step 3: Run the Rust program to generate files in the 'output' folder
       - name: Run Rust program
-        run: 
+        run: |
         ls
         cargo run --release
 
       # Step 4: Switch to 'gh-pages' branch and clean old content
       - name: Deploy to GitHub Pages
-        run: 
+        run: |
           # Configure git
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"

@@ -41,9 +41,6 @@ jobs:
           # Remove all existing files from the branch
           git rm -rf .
 
-           # Restore index.html
-          git checkout -- ./output/index.html
-
           # Copy the generated output files into the root directory
           cp -r output/* .
 

@@ -7,7 +7,7 @@ A repository hosting an RDF dataset of demon information from [Shin Megami Tense
 
 ## Generating the dataset locally
 To generate the dataset locally simpy run the following command
-`./target/release/smt-nocture-db-to-rdf -d "{URL of the desired demon dataset}/demon.ttl" -r "{URL of the desired race dataset}/race.ttl" -v "{URL of the desired vocabulary dataset}/vocabulary.ttl" -g "{URL of the desired game dataset}/vocabulary.ttl"`.
+`cargo run --release -- -d "{URL of the desired demon dataset}/demon.ttl" -r "{URL of the desired race dataset}/race.ttl" -v "{URL of the desired vocabulary dataset}/vocabulary.ttl" -g "{URL of the desired game dataset}/vocabulary.ttl"`.
 
 See the usage section for more info on the parameters.
 
@@ -37,4 +37,9 @@ Options:
 
 ```sql
 SELECT name, race, lv FROM demons;
+```
+
+
+```
+cargo run --release -- -d "{URL of the desired demon dataset}/demon.ttl" -r "{URL of the desired race dataset}/race.ttl" -v "{URL of the desired vocabulary dataset}/vocabulary.ttl" -g "{URL of the desired game dataset}/vocabulary.ttl
 ```

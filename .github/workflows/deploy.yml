@@ -35,6 +35,9 @@ jobs:
           git branch -D gh-pages || echo "branch gh-pages does not exist"
           git checkout --orphan gh-pages
 
+          # Don't ignore index.html
+          git add ./output/index.html
+
           # Remove all existing files from the branch
           git rm -rf .
           

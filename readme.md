@@ -38,5 +38,3 @@ Options:
 ```sql
 SELECT name, race, lv FROM demons;
 ```
-
-./target/release/smt-nocture-db-to-rdf -d "http://mywebsite.ca/demon.ttl" -r "http://mywebsite.ca/race.ttl" -v "http://mywebsite.ca/vocabulary.ttl" -g "http://mywebsite.ca/vocabulary.ttl"

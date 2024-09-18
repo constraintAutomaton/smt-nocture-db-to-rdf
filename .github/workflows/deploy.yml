@@ -22,7 +22,7 @@ jobs:
 
       # Step 3: Run the Rust program to generate files in the 'output' folder
       - name: Run Rust program
-        run: cargo run --release
+        run: cargo run --release -- -d "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/demon.ttl" -r "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/race.ttl" -v "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl" -g "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl"
 
       # Step 4: Switch to 'gh-pages' branch and clean old content
       - name: Deploy to GitHub Pages
@@ -39,7 +39,8 @@ jobs:
           git add ./output/index.html
 
           # Remove all existing files from the branch
-          git rm -rf .
+          git rm -f .
+          git rm -rf ./src
 
            # Restore index.html
           git checkout -- ./output/index.html

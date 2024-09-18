@@ -22,7 +22,7 @@ jobs:
 
       # Step 3: Run the Rust program to generate files in the 'output' folder
       - name: Run Rust program
-        run: cargo run --release -- -d "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/demon.ttl" -r "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/race.ttl" -v "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl" -g "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl"
+        run: cargo run --release -- -d "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/demon.ttl#" -r "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/race.ttl#" -v "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl#" -g "https://constraintautomaton.github.io/smt-nocture-db-to-rdf/game.ttl#"
 
       # Step 4: Switch to 'gh-pages' branch and clean old content
       - name: Deploy to GitHub Pages

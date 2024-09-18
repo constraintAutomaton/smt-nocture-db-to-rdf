@@ -37,12 +37,13 @@ jobs:
 
           # Remove all existing files from the branch
           git rm -rf .
-          rm -r target
-
+          
           # Copy the generated output files into the root directory
           cp -r output/* .
 
+          # Remove extra files
           rm -r output
+          rm -r target
 
           # Add and commit the changes
           git add .

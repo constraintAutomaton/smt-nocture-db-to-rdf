@@ -1,17 +1,17 @@
 use super::*;
+use sophia_api::graph::Graph;
 use sophia_api::ns::{IriRef, Namespace};
-use sophia_api::prelude::Dataset;
-use sophia_api::serializer::QuadSerializer;
+use sophia_api::serializer::TripleSerializer;
 use sophia_api::term::SimpleTerm;
 use sophia_api::MownStr;
-use sophia_turtle::serializer::trig::TrigSerializer;
+use sophia_turtle::serializer::turtle::TurtleSerializer;
 use std::collections::hash_set::HashSet;
 use std::fs::File;
 use std::sync::OnceLock;
 
 /// Transform a payload into an RDF dataset.
 pub trait Transformer<'a> {
-    fn to_rdf(&'a self) -> impl Dataset;
+    fn to_rdf(&'a self) -> impl Graph;
     fn to_file(&'a self, path: PathBuf) -> Result<(), Box<dyn std::error::Error>> {
         let file = File::options()
             .read(false)
@@ -20,9 +20,9 @@ pub trait Transformer<'a> {
             .create(true)
             .open(path)?;
 
-        let mut serializer = TrigSerializer::new(file);
+        let mut serializer = TurtleSerializer::new(file);
         let graph = self.to_rdf();
-        serializer.serialize_dataset(&graph)?;
+        serializer.serialize_graph(&graph)?;
 
         Ok(())
     }
@@ -50,17 +50,15 @@ pub struct DemonTransformer<'a> {
     race_term: SimpleTerm<'a>,
     /// RDF predicate to define the base level of a demon.
     lv_term: SimpleTerm<'a>,
-    /// RDF name graph term indicating the game from which the demon come from.
-    game_term: &'a SimpleTerm<'a>,
 }
 
 impl<'a> DemonTransformer<'a> {
     pub fn new(
         namespace: &'a Namespace<String>,
         race_namespace: &'a Namespace<String>,
-        game_term: &'a SimpleTerm<'a>,
+        vocabulary_namespace: &'a Namespace<String>,
     ) -> Self {
-        let demon_iri = namespace.get("Demon").unwrap();
+        let demon_iri = vocabulary_namespace.get("DemonSmt3").unwrap();
         let demon_term = SimpleTerm::Iri(demon_iri.to_iriref());
 
         let a_term_iri = IriRef::new(MownStr::from_str(
@@ -72,10 +70,10 @@ impl<'a> DemonTransformer<'a> {
         let name_iri = IriRef::new(MownStr::from_str("https://schema.org/name")).unwrap();
         let name_term = SimpleTerm::Iri(name_iri);
 
-        let race_iri = namespace.get("isOfRace").unwrap();
+        let race_iri = vocabulary_namespace.get("isOfRace").unwrap();
         let race_term = SimpleTerm::Iri(race_iri.to_iriref());
 
-        let lv_iri = namespace.get("hasBasedLevel").unwrap();
+        let lv_iri = vocabulary_namespace.get("hasBasedLevel").unwrap();
         let lv_term = SimpleTerm::Iri(lv_iri.to_iriref());
 
         Self {
@@ -86,15 +84,14 @@ impl<'a> DemonTransformer<'a> {
             name_term,
             race_term,
             lv_term,
-            game_term,
             race_namespace,
         }
     }
 }
 
 impl<'a> Transformer<'a> for DemonTransformer<'a> {
-    fn to_rdf(&'a self) -> impl Dataset {
-        let mut triples: Vec<[SimpleTerm; 4]> = Vec::new();
+    fn to_rdf(&'a self) -> impl Graph {
+        let mut triples: Vec<[SimpleTerm; 3]> = Vec::new();
         let string_term = STRING_TERM.get_or_init(|| {
             IriRef::new(MownStr::from_str("http://www.w3.org/2001/XMLSchema#string")).unwrap()
         });
@@ -123,28 +120,24 @@ impl<'a> Transformer<'a> for DemonTransformer<'a> {
                 instance_term.clone(),
                 self.a_term.clone(),
                 self.demon_term.clone(),
-                self.game_term.clone(),
             ]);
 
             triples.push([
                 instance_term.clone(),
                 self.name_term.clone(),
                 instance_name_term,
-                self.game_term.clone(),
             ]);
 
             triples.push([
                 instance_term.clone(),
                 self.race_term.clone(),
                 race_identifier,
-                self.game_term.clone(),
             ]);
 
             triples.push([
                 instance_term.clone(),
                 self.lv_term.clone(),
                 instance_level_term,
-                self.game_term.clone(),
             ]);
         }
 
@@ -164,12 +157,14 @@ pub struct RaceTransformer<'a> {
     a_term: SimpleTerm<'a>,
     /// RDF predicate to define a name.
     name_term: SimpleTerm<'a>,
-    /// RDF name graph term indicating the game from which the demon come from.
-    game_term: &'a SimpleTerm<'a>,
 }
+
 impl<'a> RaceTransformer<'a> {
-    pub fn new(namespace: &'a Namespace<String>, game_term: &'a SimpleTerm<'a>) -> Self {
-        let race_iri = namespace.get("Race").unwrap();
+    pub fn new(
+        namespace: &'a Namespace<String>,
+        vocabulary_namespace: &'a Namespace<String>,
+    ) -> Self {
+        let race_iri = vocabulary_namespace.get("Race").unwrap();
         let race_term = SimpleTerm::Iri(race_iri.to_iriref());
 
         let a_term_iri = IriRef::new(MownStr::from_str(
@@ -187,7 +182,6 @@ impl<'a> RaceTransformer<'a> {
             race_term,
             a_term,
             name_term,
-            game_term,
         }
     }
 }
@@ -199,8 +193,8 @@ impl<'a> DemonCharacteristicTransformer<'a> for RaceTransformer<'a> {
     }
 }
 impl<'a> Transformer<'a> for RaceTransformer<'a> {
-    fn to_rdf(&'a self) -> impl Dataset {
-        let mut triples: Vec<[SimpleTerm; 4]> = Vec::new();
+    fn to_rdf(&'a self) -> impl Graph {
+        let mut triples: Vec<[SimpleTerm; 3]> = Vec::new();
         let string_term = STRING_TERM.get_or_init(|| {
             IriRef::new(MownStr::from_str("http://www.w3.org/2001/XMLSchema#string")).unwrap()
         });
@@ -214,14 +208,8 @@ impl<'a> Transformer<'a> for RaceTransformer<'a> {
                 instance_term.clone(),
                 self.a_term.clone(),
                 self.race_term.clone(),
-                self.game_term.clone(),
             ]);
-            triples.push([
-                instance_term,
-                self.name_term.clone(),
-                instance_name_term,
-                self.game_term.clone(),
-            ]);
+            triples.push([instance_term, self.name_term.clone(), instance_name_term]);
         }
         triples
     }

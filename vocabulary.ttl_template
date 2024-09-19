@@ -4,14 +4,14 @@
 @prefix rdfs: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<Demon> rdf:type rdfs:Class .
+<DemonSmt3> rdf:type rdfs:Class .
 
 
 <hasBasedLevel> rdf:type rdf:property ;
                  rdfs:range xsd:integer .
 
 <isOfRace> rdf:type rdf:property ;
-            rdfs:domain <Demon> ;
+            rdfs:domain <DemonSmt3> ;
             rdfs:range <Race> .
 
 <Race> rdf:type rdfs:Class .

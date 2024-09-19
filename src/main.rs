@@ -2,7 +2,7 @@ use clap::Parser;
 use cli::CliArgs;
 use csv;
 use serde::Deserialize;
-use sophia_api::{ns::Namespace, term::SimpleTerm, MownStr};
+use sophia_api::ns::Namespace;
 use std::{
     fs::{self, File},
     io::{BufReader, Write},
@@ -29,22 +29,15 @@ fn main() {
         Namespace::new(demon_rdf_namespace.unwrap_or("http://example.org/".to_string())).unwrap();
     let race_rdf_file_namespace =
         Namespace::new(race_rdf_namespace.unwrap_or("http://example.org/".to_string())).unwrap();
-    let game_rdf_file_namespace = Namespace::new(
-        game_rdf_namespace
-            .clone()
-            .unwrap_or("http://example.org/".to_string()),
-    )
-    .unwrap();
 
-    let smt_game_prefix = MownStr::from_str("smt3");
-    let smt_game_iri = game_rdf_file_namespace.get(&smt_game_prefix).unwrap();
-    let smt_game_term = SimpleTerm::Iri(smt_game_iri.to_iriref());
+    let vocabulary_rdf_file_namespace =
+        Namespace::new(vocabulary_namespace.clone().unwrap_or("http://example.org/".to_string())).unwrap();
 
-    let mut race_transformer = RaceTransformer::new(&race_rdf_file_namespace, &smt_game_term);
+    let mut race_transformer = RaceTransformer::new(&race_rdf_file_namespace, &vocabulary_rdf_file_namespace);
     let mut demon_transformer = DemonTransformer::new(
         &demon_rdf_file_namespace,
         &race_rdf_file_namespace,
-        &smt_game_term,
+        &vocabulary_rdf_file_namespace,
     );
 
     let out_folder = out_path.unwrap_or(PathBuf::from("./output/"));

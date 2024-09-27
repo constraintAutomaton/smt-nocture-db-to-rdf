@@ -14,4 +14,8 @@
             rdfs:domain <DemonSmt3> ;
             rdfs:range <Race> .
 
+<withRace1> rdf:type rdf:property .
+<withRace2> rdf:type rdf:property .
+<fusionRaceResult> rdf:type rdf:property .
+
 <Race> rdf:type rdfs:Class .

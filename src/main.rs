@@ -1,4 +1,4 @@
-use clap::{builder::Str, Parser};
+use clap::Parser;
 use cli::CliArgs;
 use csv;
 use serde::Deserialize;
@@ -23,35 +23,94 @@ fn main() {
         path_vocabulary,
         path_game,
         raw_demon_file,
+        raw_basic_fusion_file,
+        basic_rules_rdf_namespace,
     } = CliArgs::parse();
 
     let demon_rdf_namespace = demon_rdf_namespace.unwrap_or("http://example.org/".to_string());
     let race_rdf_namespace = race_rdf_namespace.unwrap_or("http://example.org/".to_string());
     let vocabulary_namespace = vocabulary_namespace.unwrap_or("http://example.org/".to_string());
     let game_rdf_namespace = game_rdf_namespace.unwrap_or("http://example.org/".to_string());
+    let basic_rules_rdf_namespace =
+        basic_rules_rdf_namespace.unwrap_or("http://example.org/".to_string());
+
+    let demon_rdf_file_namespace = Namespace::new(demon_rdf_namespace).unwrap();
+    let race_rdf_file_namespace = Namespace::new(race_rdf_namespace).unwrap();
+    let vocabulary_rdf_namespace = Namespace::new(vocabulary_namespace.clone()).unwrap();
 
     let out_path = out_path.unwrap_or(PathBuf::from("./output/"));
     let path_vocabulary = path_vocabulary.unwrap_or(PathBuf::from("./vocabulary.ttl_template"));
     let path_game = path_game.unwrap_or(PathBuf::from("./game.ttl_template"));
 
     let raw_demon_file = raw_demon_file.unwrap_or(PathBuf::from("./demon_simple_info.csv"));
+    let raw_basic_fusion_file =
+        raw_basic_fusion_file.unwrap_or(PathBuf::from("./fusion_basic_rule.csv"));
 
     generate_demon_rdf(
-        demon_rdf_namespace,
-        race_rdf_namespace,
+        &demon_rdf_file_namespace,
+        &race_rdf_file_namespace,
+        &vocabulary_rdf_namespace,
         vocabulary_namespace,
         game_rdf_namespace,
         &out_path,
         &path_vocabulary,
         &path_game,
         &raw_demon_file,
-    ).unwrap();
-    
+    )
+    .unwrap();
+
+    generate_basic_fusion_rule(
+        &demon_rdf_file_namespace,
+        &race_rdf_file_namespace,
+        &vocabulary_rdf_namespace,
+        basic_rules_rdf_namespace,
+        &out_path,
+        &raw_basic_fusion_file,
+    )
+    .unwrap();
+}
+
+fn generate_basic_fusion_rule(
+    demon_rdf_namespace: &Namespace<String>,
+    race_rdf_namespace: &Namespace<String>,
+    vocabulary_rdf_namespace: &Namespace<String>,
+
+    basic_rules_rdf_namespace: String,
+
+    out_path: &PathBuf,
+
+    raw_file_basic_rule: &PathBuf,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let basic_rule_rdf_file_namespace = Namespace::new(basic_rules_rdf_namespace)?;
+
+    let mut rule_transformer = BasicFusionRuleTransformer::new(
+        &basic_rule_rdf_file_namespace,
+        demon_rdf_namespace,
+        race_rdf_namespace,
+        vocabulary_rdf_namespace,
+    );
+
+    let basic_rules_output_file = out_path.join("basic_rules.ttl");
+
+    let raw_file: File = File::open(raw_file_basic_rule)?;
+    let buf_reader = BufReader::new(raw_file);
+
+    let mut rdr = csv::Reader::from_reader(buf_reader);
+
+    for result in rdr.deserialize() {
+        let fusion_rule_record: BasicFusionRule = result?;
+        rule_transformer.rules.push(fusion_rule_record);
+    }
+
+    rule_transformer.to_file(basic_rules_output_file)?;
+
+    Ok(())
 }
 
 fn generate_demon_rdf(
-    demon_rdf_namespace: String,
-    race_rdf_namespace: String,
+    demon_rdf_namespace: &Namespace<String>,
+    race_rdf_namespace: &Namespace<String>,
+    vocabulary_rdf_namespace: &Namespace<String>,
     vocabulary_namespace: String,
     game_rdf_namespace: String,
 
@@ -61,24 +120,17 @@ fn generate_demon_rdf(
 
     raw_demon_file: &PathBuf,
 ) -> Result<(), Box<dyn std::error::Error>> {
-    let demon_rdf_file_namespace = Namespace::new(demon_rdf_namespace)?;
-    let race_rdf_file_namespace = Namespace::new(race_rdf_namespace)?;
-
-    let vocabulary_rdf_file_namespace = Namespace::new(vocabulary_namespace.clone())?;
-
-    let mut race_transformer =
-        RaceTransformer::new(&race_rdf_file_namespace, &vocabulary_rdf_file_namespace);
+    let mut race_transformer = RaceTransformer::new(race_rdf_namespace, &vocabulary_rdf_namespace);
     let mut demon_transformer = DemonTransformer::new(
-        &demon_rdf_file_namespace,
-        &race_rdf_file_namespace,
-        &vocabulary_rdf_file_namespace,
+        demon_rdf_namespace,
+        race_rdf_namespace,
+        &vocabulary_rdf_namespace,
     );
 
-    let out_folder = out_path;
-    let race_output_file = out_folder.join("race.ttl");
-    let demon_output_file = out_folder.join("demon.ttl");
-    let vocabulary_output_file = out_folder.join("vocabulary.ttl");
-    let game_output_file = out_folder.join("game.ttl");
+    let race_output_file = out_path.join("race.ttl");
+    let demon_output_file = out_path.join("demon.ttl");
+    let vocabulary_output_file = out_path.join("vocabulary.ttl");
+    let game_output_file = out_path.join("game.ttl");
 
     rdf_from_template(
         path_vocabulary,
@@ -131,4 +183,11 @@ struct Demon {
     pub name: String,
     pub race: String,
     pub lv: String,
+}
+
+#[derive(Debug, Deserialize, Clone)]
+struct BasicFusionRule {
+    pub result: String,
+    pub demon1: String,
+    pub demon2: String,
 }

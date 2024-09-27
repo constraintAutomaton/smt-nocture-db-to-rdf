@@ -1,372 +1,372 @@
-"result", "demon1", "demon2"
-"*Aeros*", "Beast", "Beast"
-"*Aeros*", "Divine", "Divine"
-"*Aeros*", "Fairy", "Fairy"
-"*Aeros*", "Wilder", "Wilder"
-"*Aquans*", "Femme", "Femme"
-"*Aquans*", "Snake", "Snake"
-"*Aquans*", "Yoma", "Yoma"
-"*Erthys", "Brute", "Brute"
-"*Erthys", "Fallen", "Fallen"
-"*Erthys", "Jirae", "Jirae"
-"*Erthys", "Night", "Night"
-"*Flaemis*", "Holy", "Holy"
-"*Flaemis*", "Seraph", "Seraph"
-"Avatar", "Beast", "Deity"
-"Avatar", "Beast", "Fury"
-"Avatar", "Beast", "Holy"
-"Avatar", "Dragon", "Megami"
-"Avatar", "Dragon", "Yoma"
-"Avatar", "Holy", "Lady"
-"Beast", "Brute", "Femme"
-"Beast", "Brute", "Snake"
-"Beast", "Divine", "Femme"
-"Beast", "Fallen", "Holy"
-"Beast", "Fallen", "Snake"
-"Beast", "Foul", "Wilder"
-"Beast", "Holy", "Jirae"
-"Beast", "Jirae", "Lady"
-"Beast", "Jirae", "Yoma"
-"Beast", "Night", "Wilder"
-"Beast", "Wilder", "Yoma"
-"Brute", "Avian", "Femme"
-"Brute", "Beast", "Snake"
-"Brute", "Deity", "Jirae"
-"Brute", "Entity", "Foul"
-"Brute", "Entity", "Haunt"
-"Brute", "Entity", "Night"
-"Brute", "Entity", "Wilder"
-"Brute", "Fairy", "Fury"
-"Brute", "Fairy", "Kishin"
-"Brute", "Fallen", "Jirae"
-"Brute", "Fallen", "Vile"
-"Brute", "Femme", "Vile"
-"Brute", "Femme", "Yoma"
-"Brute", "Fiend", "Snake"
-"Brute", "Foul", "Haunt"
-"Brute", "Foul", "Night"
-"Brute", "Haunt", "Snake"
-"Brute", "Jirae", "Wilder"
-"Brute", "Snake", "Tyrant"
-"Deity", "Avatar", "Megami"
-"Deity", "Avatar", "Seraph"
-"Deity", "Avatar", "Vile"
-"Deity", "Avatar", "Wargod"
-"Deity", "Avian", "Entity"
-"Deity", "Avian", "Megami"
-"Deity", "Divine", "Fury"
-"Deity", "Entity", "Megami"
-"Deity", "Entity", "Seraph"
-"Deity", "Fiend", "Fury"
-"Deity", "Fury", "Megami"
-"Deity", "Fury", "Tyrant"
-"Deity", "Fury", "Wargod"
-"Deity", "Lady", "Seraph"
-"Deity", "Megami", "Seraph"
-"Deity", "Megami", "Wargod"
-"Divine", "Avatar", "Fairy"
-"Divine", "Avatar", "Fallen"
-"Divine", "Avatar", "Yoma"
-"Divine", "Beast", "Fairy"
-"Divine", "Brute", "Genma"
-"Divine", "Fallen", "Megami"
-"Divine", "Genma", "Megami"
-"Divine", "Holy", "Megami"
-"Divine", "Holy", "Seraph"
-"Divine", "Holy", "Yoma"
-"Divine", "Kishin", "Seraph"
-"Divine", "Night", "Yoma"
-"Divine", "Seraph", "Vile"
-"Fairy", "Beast", "Genma"
-"Fairy", "Beast", "Night"
-"Fairy", "Brute", "Jirae"
-"Fairy", "Brute", "Wilder"
-"Fairy", "Divine", "Foul"
-"Fairy", "Divine", "Holy"
-"Fairy", "Divine", "Snake"
-"Fairy", "Femme", "Megami"
-"Fairy", "Holy", "Night"
-"Fairy", "Megami", "Snake"
-"Fallen", "Beast", "Yoma"
-"Fallen", "Divine", "Vile"
-"Fallen", "Divine", "Wilder"
-"Fallen", "Fairy", "Megami"
-"Fallen", "Femme", "Wilder"
-"Fallen", "Fiend", "Seraph"
-"Fallen", "Foul", "Seraph"
-"Fallen", "Foul", "Snake"
-"Fallen", "Haunt", "Seraph"
-"Fallen", "Jirae", "Snake"
-"Fallen", "Megami", "Night"
-"Fallen", "Night", "Seraph"
-"Fallen", "Night", "Snake"
-"Fallen", "Seraph", "Tyrant"
-"Femme", "Avian", "Beast"
-"Femme", "Avian", "Night"
-"Femme", "Beast", "Brute"
-"Femme", "Brute", "Holy"
-"Femme", "Brute", "Megami"
-"Femme", "Brute", "Yoma"
-"Femme", "Dragon", "Night"
-"Femme", "Foul", "Jirae"
-"Femme", "Fury", "Jirae"
-"Femme", "Genma", "Lady"
-"Femme", "Genma", "Snake"
-"Femme", "Kishin", "Night"
-"Femme", "Kishin", "Snake"
-"Femme", "Kishin", "Yoma"
-"Femme", "Lady", "Snake"
-"Foul", "Beast", "Femme"
-"Foul", "Beast", "Vile"
-"Foul", "Brute", "Haunt"
-"Foul", "Divine", "Raptor"
-"Foul", "Fallen", "Raptor"
-"Foul", "Femme", "Haunt"
-"Foul", "Femme", "Raptor"
-"Foul", "Fiend", "Haunt"
-"Foul", "Haunt", "Tyrant"
-"Foul", "Haunt", "Vile"
-"Foul", "Jirae", "Night"
-"Foul", "Jirae", "Raptor"
-"Foul", "Raptor", "Snake"
-"Foul", "Vile", "Wilder"
-"Fury", "Avatar", "Dragon"
-"Fury", "Avatar", "Entity"
-"Fury", "Avatar", "Lady"
-"Fury", "Avian", "Dragon"
-"Fury", "Brute", "Entity"
-"Fury", "Brute", "Lady"
-"Fury", "Brute", "Raptor"
-"Fury", "Deity", "Fallen"
-"Fury", "Deity", "Kishin"
-"Fury", "Dragon", "Kishin"
-"Fury", "Entity", "Genma"
-"Fury", "Entity", "Jirae"
-"Fury", "Entity", "Kishin"
-"Fury", "Entity", "Lady"
-"Fury", "Entity", "Snake"
-"Fury", "Entity", "Wargod"
-"Fury", "Fallen", "Fiend"
-"Fury", "Fallen", "Lady"
-"Fury", "Fallen", "Tyrant"
-"Fury", "Fiend", "Raptor"
-"Fury", "Fiend", "Vile"
-"Fury", "Kishin", "Lady"
-"Fury", "Kishin", "Wargod"
-"Fury", "Lady", "Megami"
-"Fury", "Megami", "Vile"
-"Fury", "Raptor", "Tyrant"
-"Fury", "Raptor", "Vile"
-"Fury", "Tyrant", "Vile"
-"Haunt", "Brute", "Fiend"
-"Haunt", "Brute", "Tyrant"
-"Haunt", "Brute", "Vile"
-"Haunt", "Fairy", "Femme"
-"Haunt", "Fairy", "Foul"
-"Haunt", "Fairy", "Raptor"
-"Haunt", "Fallen", "Night"
-"Haunt", "Fiend", "Foul"
-"Haunt", "Foul", "Tyrant"
-"Haunt", "Foul", "Vile"
-"Haunt", "Jirae", "Vile"
-"Haunt", "Lady", "Wilder"
-"Haunt", "Raptor", "Yoma"
-"Holy", "Avatar", "Avian"
-"Holy", "Avatar", "Fury"
-"Holy", "Avatar", "Kishin"
-"Holy", "Avatar", "Night"
-"Holy", "Beast", "Divine"
-"Holy", "Beast", "Entity"
-"Holy", "Beast", "Kishin"
-"Holy", "Beast", "Megami"
-"Holy", "Beast", "Wargod"
-"Holy", "Divine", "Megami"
-"Holy", "Divine", "Wargod"
-"Holy", "Dragon", "Genma"
-"Holy", "Dragon", "Seraph"
-"Holy", "Fairy", "Seraph"
-"Holy", "Fairy", "Yoma"
-"Holy", "Fury", "Yoma"
-"Holy", "Genma", "Night"
-"Holy", "Genma", "Wargod"
-"Jirae", "Beast", "Wilder"
-"Jirae", "Brute", "Fallen"
-"Jirae", "Divine", "Haunt"
-"Jirae", "Fallen", "Yoma"
-"Jirae", "Femme", "Night"
-"Jirae", "Haunt", "Wilder"
-"Jirae", "Haunt", "Yoma"
-"Jirae", "Vile", "Yoma"
-"Kishin", "Avatar", "Brute"
-"Kishin", "Avatar", "Femme"
-"Kishin", "Avatar", "Genma"
-"Kishin", "Avatar", "Jirae"
-"Kishin", "Avian", "Brute"
-"Kishin", "Avian", "Fury"
-"Kishin", "Avian", "Jirae"
-"Kishin", "Avian", "Snake"
-"Kishin", "Avian", "Wargod"
-"Kishin", "Brute", "Deity"
-"Kishin", "Brute", "Night"
-"Kishin", "Deity", "Snake"
-"Kishin", "Deity", "Wargod"
-"Kishin", "Dragon", "Jirae"
-"Kishin", "Entity", "Fallen"
-"Kishin", "Entity", "Holy"
-"Kishin", "Femme", "Lady"
-"Kishin", "Femme", "Snake"
-"Kishin", "Fury", "Holy"
-"Kishin", "Fury", "Snake"
-"Kishin", "Holy", "Snake"
-"Kishin", "Holy", "Wargod"
-"Kishin", "Jirae", "Wargod"
-"Kishin", "Lady", "Night"
-"Kishin", "Lady", "Raptor"
-"Kishin", "Lady", "Wargod"
-"Kishin", "Megami", "Yoma"
-"Kishin", "Seraph", "Wargod"
-"Kishin", "Snake", "Vile"
-"Kishin", "Snake", "Wargod"
-"Kishin", "Vile", "Wargod"
-"Lady", "Avatar", "Snake"
-"Lady", "Avian", "Holy"
-"Lady", "Avian", "Kishin"
-"Lady", "Brute", "Fury"
-"Lady", "Deity", "Femme"
-"Lady", "Dragon", "Entity"
-"Lady", "Dragon", "Snake"
-"Lady", "Dragon", "Wargod"
-"Lady", "Entity", "Femme"
-"Lady", "Entity", "Fury"
-"Lady", "Fallen", "Genma"
-"Lady", "Fallen", "Seraph"
-"Lady", "Fallen", "Wargod"
-"Lady", "Femme", "Fiend"
-"Lady", "Femme", "Fury"
-"Lady", "Femme", "Holy"
-"Lady", "Femme", "Kishin"
-"Lady", "Femme", "Tyrant"
-"Lady", "Fiend", "Night"
-"Lady", "Fury", "Genma"
-"Lady", "Fury", "Kishin"
-"Lady", "Fury", "Night"
-"Lady", "Genma", "Jirae"
-"Lady", "Genma", "Raptor"
-"Lady", "Holy", "Kishin"
-"Lady", "Jirae", "Megami"
-"Lady", "Kishin", "Megami"
-"Lady", "Night", "Tyrant"
-"Lady", "Night", "Vile"
-"Megami", "Avatar", "Deity"
-"Megami", "Avatar", "Divine"
-"Megami", "Avatar", "Holy"
-"Megami", "Avian", "Deity"
-"Megami", "Avian", "Genma"
-"Megami", "Avian", "Raptor"
-"Megami", "Avian", "Seraph"
-"Megami", "Deity", "Divine"
-"Megami", "Deity", "Entity"
-"Megami", "Deity", "Genma"
-"Megami", "Deity", "Holy"
-"Megami", "Deity", "Yoma"
-"Megami", "Divine", "Dragon"
-"Megami", "Divine", "Entity"
-"Megami", "Divine", "Fairy"
-"Megami", "Divine", "Genma"
-"Megami", "Divine", "Lady"
-"Megami", "Divine", "Seraph"
-"Megami", "Entity", "Fairy"
-"Megami", "Entity", "Yoma"
-"Megami", "Fairy", "Holy"
-"Megami", "Genma", "Kishin"
-"Megami", "Genma", "Seraph"
-"Megami", "Seraph", "Yoma"
-"Night", "Avian", "Fairy"
-"Night", "Avian", "Yoma"
-"Night", "Beast", "Fallen"
-"Night", "Beast", "Fiend"
-"Night", "Beast", "Tyrant"
-"Night", "Brute", "Dragon"
-"Night", "Brute", "Fairy"
-"Night", "Deity", "Fairy"
-"Night", "Divine", "Jirae"
-"Night", "Dragon", "Femme"
-"Night", "Fairy", "Fiend"
-"Night", "Fairy", "Haunt"
-"Night", "Fairy", "Tyrant"
-"Night", "Fairy", "Vile"
-"Night", "Fallen", "Haunt"
-"Night", "Fallen", "Kishin"
-"Night", "Fallen", "Wilder"
-"Night", "Femme", "Genma"
-"Night", "Fiend", "Wilder"
-"Night", "Fiend", "Yoma"
-"Night", "Lady", "Yoma"
-"Night", "Snake", "Wilder"
-"Night", "Snake", "Yoma"
-"Night", "Tyrant", "Wilder"
-"Night", "Tyrant", "Yoma"
-"Snake", "Avatar", "Beast"
-"Snake", "Avian", "Divine"
-"Snake", "Avian", "Fallen"
-"Snake", "Beast", "Dragon"
-"Snake", "Beast", "Lady"
-"Snake", "Brute", "Kishin"
-"Snake", "Divine", "Night"
-"Snake", "Divine", "Yoma"
-"Snake", "Dragon", "Fairy"
-"Snake", "Dragon", "Fallen"
-"Snake", "Dragon", "Foul"
-"Snake", "Dragon", "Holy"
-"Snake", "Dragon", "Vile"
-"Snake", "Fairy", "Night"
-"Snake", "Foul", "Yoma"
-"Snake", "Jirae", "Kishin"
-"Tyrant", "Deity", "Raptor"
-"Tyrant", "Fury", "Raptor"
-"Tyrant", "Fury", "Vile"
-"Tyrant", "Kishin", "Raptor"
-"Tyrant", "Megami", "Raptor"
-"Vile", "Deity", "Night"
-"Vile", "Divine", "Fallen"
-"Vile", "Divine", "Fiend"
-"Vile", "Divine", "Kishin"
-"Vile", "Divine", "Tyrant"
-"Vile", "Entity", "Raptor"
-"Vile", "Fallen", "Foul"
-"Vile", "Fallen", "Fury"
-"Vile", "Foul", "Lady"
-"Vile", "Foul", "Raptor"
-"Vile", "Fury", "Lady"
-"Vile", "Fury", "Seraph"
-"Vile", "Haunt", "Jirae"
-"Vile", "Haunt", "Lady"
-"Vile", "Haunt", "Raptor"
-"Vile", "Megami", "Wilder"
-"Vile", "Night", "Raptor"
-"Vile", "Raptor", "Wilder"
-"Wilder", "Avatar", "Raptor"
-"Wilder", "Beast", "Foul"
-"Wilder", "Beast", "Haunt"
-"Wilder", "Beast", "Raptor"
-"Wilder", "Brute", "Foul"
-"Wilder", "Fallen", "Femme"
-"Wilder", "Femme", "Foul"
-"Wilder", "Femme", "Jirae"
-"Wilder", "Fiend", "Jirae"
-"Wilder", "Holy", "Raptor"
-"Wilder", "Jirae", "Tyrant"
-"Yoma", "Beast", "Jirae"
-"Yoma", "Brute", "Divine"
-"Yoma", "Dragon", "Raptor"
-"Yoma", "Fairy", "Fallen"
-"Yoma", "Fairy", "Jirae"
-"Yoma", "Fairy", "Lady"
-"Yoma", "Fairy", "Snake"
-"Yoma", "Fairy", "Wilder"
-"Yoma", "Fiend", "Genma"
-"Yoma", "Genma", "Holy"
-"Yoma", "Genma", "Tyrant"
-"Yoma", "Genma", "Vile"
-"Yoma", "Genma", "Wilder"
-"Yoma", "Haunt", "Night"
+result,demon1,demon2
+*Aeros*,Beast,Beast
+*Aeros*,Divine,Divine
+*Aeros*,Fairy,Fairy
+*Aeros*,Wilder,Wilder
+*Aquans*,Femme,Femme
+*Aquans*,Snake,Snake
+*Aquans*,Yoma,Yoma
+*Erthys,Brute,Brute
+*Erthys,Fallen,Fallen
+*Erthys,Jirae,Jirae
+*Erthys,Night,Night
+*Flaemis*,Holy,Holy
+*Flaemis*,Seraph,Seraph
+Avatar,Beast,Deity
+Avatar,Beast,Fury
+Avatar,Beast,Holy
+Avatar,Dragon,Megami
+Avatar,Dragon,Yoma
+Avatar,Holy,Lady
+Beast,Brute,Femme
+Beast,Brute,Snake
+Beast,Divine,Femme
+Beast,Fallen,Holy
+Beast,Fallen,Snake
+Beast,Foul,Wilder
+Beast,Holy,Jirae
+Beast,Jirae,Lady
+Beast,Jirae,Yoma
+Beast,Night,Wilder
+Beast,Wilder,Yoma
+Brute,Avian,Femme
+Brute,Beast,Snake
+Brute,Deity,Jirae
+Brute,Entity,Foul
+Brute,Entity,Haunt
+Brute,Entity,Night
+Brute,Entity,Wilder
+Brute,Fairy,Fury
+Brute,Fairy,Kishin
+Brute,Fallen,Jirae
+Brute,Fallen,Vile
+Brute,Femme,Vile
+Brute,Femme,Yoma
+Brute,Fiend,Snake
+Brute,Foul,Haunt
+Brute,Foul,Night
+Brute,Haunt,Snake
+Brute,Jirae,Wilder
+Brute,Snake,Tyrant
+Deity,Avatar,Megami
+Deity,Avatar,Seraph
+Deity,Avatar,Vile
+Deity,Avatar,Wargod
+Deity,Avian,Entity
+Deity,Avian,Megami
+Deity,Divine,Fury
+Deity,Entity,Megami
+Deity,Entity,Seraph
+Deity,Fiend,Fury
+Deity,Fury,Megami
+Deity,Fury,Tyrant
+Deity,Fury,Wargod
+Deity,Lady,Seraph
+Deity,Megami,Seraph
+Deity,Megami,Wargod
+Divine,Avatar,Fairy
+Divine,Avatar,Fallen
+Divine,Avatar,Yoma
+Divine,Beast,Fairy
+Divine,Brute,Genma
+Divine,Fallen,Megami
+Divine,Genma,Megami
+Divine,Holy,Megami
+Divine,Holy,Seraph
+Divine,Holy,Yoma
+Divine,Kishin,Seraph
+Divine,Night,Yoma
+Divine,Seraph,Vile
+Fairy,Beast,Genma
+Fairy,Beast,Night
+Fairy,Brute,Jirae
+Fairy,Brute,Wilder
+Fairy,Divine,Foul
+Fairy,Divine,Holy
+Fairy,Divine,Snake
+Fairy,Femme,Megami
+Fairy,Holy,Night
+Fairy,Megami,Snake
+Fallen,Beast,Yoma
+Fallen,Divine,Vile
+Fallen,Divine,Wilder
+Fallen,Fairy,Megami
+Fallen,Femme,Wilder
+Fallen,Fiend,Seraph
+Fallen,Foul,Seraph
+Fallen,Foul,Snake
+Fallen,Haunt,Seraph
+Fallen,Jirae,Snake
+Fallen,Megami,Night
+Fallen,Night,Seraph
+Fallen,Night,Snake
+Fallen,Seraph,Tyrant
+Femme,Avian,Beast
+Femme,Avian,Night
+Femme,Beast,Brute
+Femme,Brute,Holy
+Femme,Brute,Megami
+Femme,Brute,Yoma
+Femme,Dragon,Night
+Femme,Foul,Jirae
+Femme,Fury,Jirae
+Femme,Genma,Lady
+Femme,Genma,Snake
+Femme,Kishin,Night
+Femme,Kishin,Snake
+Femme,Kishin,Yoma
+Femme,Lady,Snake
+Foul,Beast,Femme
+Foul,Beast,Vile
+Foul,Brute,Haunt
+Foul,Divine,Raptor
+Foul,Fallen,Raptor
+Foul,Femme,Haunt
+Foul,Femme,Raptor
+Foul,Fiend,Haunt
+Foul,Haunt,Tyrant
+Foul,Haunt,Vile
+Foul,Jirae,Night
+Foul,Jirae,Raptor
+Foul,Raptor,Snake
+Foul,Vile,Wilder
+Fury,Avatar,Dragon
+Fury,Avatar,Entity
+Fury,Avatar,Lady
+Fury,Avian,Dragon
+Fury,Brute,Entity
+Fury,Brute,Lady
+Fury,Brute,Raptor
+Fury,Deity,Fallen
+Fury,Deity,Kishin
+Fury,Dragon,Kishin
+Fury,Entity,Genma
+Fury,Entity,Jirae
+Fury,Entity,Kishin
+Fury,Entity,Lady
+Fury,Entity,Snake
+Fury,Entity,Wargod
+Fury,Fallen,Fiend
+Fury,Fallen,Lady
+Fury,Fallen,Tyrant
+Fury,Fiend,Raptor
+Fury,Fiend,Vile
+Fury,Kishin,Lady
+Fury,Kishin,Wargod
+Fury,Lady,Megami
+Fury,Megami,Vile
+Fury,Raptor,Tyrant
+Fury,Raptor,Vile
+Fury,Tyrant,Vile
+Haunt,Brute,Fiend
+Haunt,Brute,Tyrant
+Haunt,Brute,Vile
+Haunt,Fairy,Femme
+Haunt,Fairy,Foul
+Haunt,Fairy,Raptor
+Haunt,Fallen,Night
+Haunt,Fiend,Foul
+Haunt,Foul,Tyrant
+Haunt,Foul,Vile
+Haunt,Jirae,Vile
+Haunt,Lady,Wilder
+Haunt,Raptor,Yoma
+Holy,Avatar,Avian
+Holy,Avatar,Fury
+Holy,Avatar,Kishin
+Holy,Avatar,Night
+Holy,Beast,Divine
+Holy,Beast,Entity
+Holy,Beast,Kishin
+Holy,Beast,Megami
+Holy,Beast,Wargod
+Holy,Divine,Megami
+Holy,Divine,Wargod
+Holy,Dragon,Genma
+Holy,Dragon,Seraph
+Holy,Fairy,Seraph
+Holy,Fairy,Yoma
+Holy,Fury,Yoma
+Holy,Genma,Night
+Holy,Genma,Wargod
+Jirae,Beast,Wilder
+Jirae,Brute,Fallen
+Jirae,Divine,Haunt
+Jirae,Fallen,Yoma
+Jirae,Femme,Night
+Jirae,Haunt,Wilder
+Jirae,Haunt,Yoma
+Jirae,Vile,Yoma
+Kishin,Avatar,Brute
+Kishin,Avatar,Femme
+Kishin,Avatar,Genma
+Kishin,Avatar,Jirae
+Kishin,Avian,Brute
+Kishin,Avian,Fury
+Kishin,Avian,Jirae
+Kishin,Avian,Snake
+Kishin,Avian,Wargod
+Kishin,Brute,Deity
+Kishin,Brute,Night
+Kishin,Deity,Snake
+Kishin,Deity,Wargod
+Kishin,Dragon,Jirae
+Kishin,Entity,Fallen
+Kishin,Entity,Holy
+Kishin,Femme,Lady
+Kishin,Femme,Snake
+Kishin,Fury,Holy
+Kishin,Fury,Snake
+Kishin,Holy,Snake
+Kishin,Holy,Wargod
+Kishin,Jirae,Wargod
+Kishin,Lady,Night
+Kishin,Lady,Raptor
+Kishin,Lady,Wargod
+Kishin,Megami,Yoma
+Kishin,Seraph,Wargod
+Kishin,Snake,Vile
+Kishin,Snake,Wargod
+Kishin,Vile,Wargod
+Lady,Avatar,Snake
+Lady,Avian,Holy
+Lady,Avian,Kishin
+Lady,Brute,Fury
+Lady,Deity,Femme
+Lady,Dragon,Entity
+Lady,Dragon,Snake
+Lady,Dragon,Wargod
+Lady,Entity,Femme
+Lady,Entity,Fury
+Lady,Fallen,Genma
+Lady,Fallen,Seraph
+Lady,Fallen,Wargod
+Lady,Femme,Fiend
+Lady,Femme,Fury
+Lady,Femme,Holy
+Lady,Femme,Kishin
+Lady,Femme,Tyrant
+Lady,Fiend,Night
+Lady,Fury,Genma
+Lady,Fury,Kishin
+Lady,Fury,Night
+Lady,Genma,Jirae
+Lady,Genma,Raptor
+Lady,Holy,Kishin
+Lady,Jirae,Megami
+Lady,Kishin,Megami
+Lady,Night,Tyrant
+Lady,Night,Vile
+Megami,Avatar,Deity
+Megami,Avatar,Divine
+Megami,Avatar,Holy
+Megami,Avian,Deity
+Megami,Avian,Genma
+Megami,Avian,Raptor
+Megami,Avian,Seraph
+Megami,Deity,Divine
+Megami,Deity,Entity
+Megami,Deity,Genma
+Megami,Deity,Holy
+Megami,Deity,Yoma
+Megami,Divine,Dragon
+Megami,Divine,Entity
+Megami,Divine,Fairy
+Megami,Divine,Genma
+Megami,Divine,Lady
+Megami,Divine,Seraph
+Megami,Entity,Fairy
+Megami,Entity,Yoma
+Megami,Fairy,Holy
+Megami,Genma,Kishin
+Megami,Genma,Seraph
+Megami,Seraph,Yoma
+Night,Avian,Fairy
+Night,Avian,Yoma
+Night,Beast,Fallen
+Night,Beast,Fiend
+Night,Beast,Tyrant
+Night,Brute,Dragon
+Night,Brute,Fairy
+Night,Deity,Fairy
+Night,Divine,Jirae
+Night,Dragon,Femme
+Night,Fairy,Fiend
+Night,Fairy,Haunt
+Night,Fairy,Tyrant
+Night,Fairy,Vile
+Night,Fallen,Haunt
+Night,Fallen,Kishin
+Night,Fallen,Wilder
+Night,Femme,Genma
+Night,Fiend,Wilder
+Night,Fiend,Yoma
+Night,Lady,Yoma
+Night,Snake,Wilder
+Night,Snake,Yoma
+Night,Tyrant,Wilder
+Night,Tyrant,Yoma
+Snake,Avatar,Beast
+Snake,Avian,Divine
+Snake,Avian,Fallen
+Snake,Beast,Dragon
+Snake,Beast,Lady
+Snake,Brute,Kishin
+Snake,Divine,Night
+Snake,Divine,Yoma
+Snake,Dragon,Fairy
+Snake,Dragon,Fallen
+Snake,Dragon,Foul
+Snake,Dragon,Holy
+Snake,Dragon,Vile
+Snake,Fairy,Night
+Snake,Foul,Yoma
+Snake,Jirae,Kishin
+Tyrant,Deity,Raptor
+Tyrant,Fury,Raptor
+Tyrant,Fury,Vile
+Tyrant,Kishin,Raptor
+Tyrant,Megami,Raptor
+Vile,Deity,Night
+Vile,Divine,Fallen
+Vile,Divine,Fiend
+Vile,Divine,Kishin
+Vile,Divine,Tyrant
+Vile,Entity,Raptor
+Vile,Fallen,Foul
+Vile,Fallen,Fury
+Vile,Foul,Lady
+Vile,Foul,Raptor
+Vile,Fury,Lady
+Vile,Fury,Seraph
+Vile,Haunt,Jirae
+Vile,Haunt,Lady
+Vile,Haunt,Raptor
+Vile,Megami,Wilder
+Vile,Night,Raptor
+Vile,Raptor,Wilder
+Wilder,Avatar,Raptor
+Wilder,Beast,Foul
+Wilder,Beast,Haunt
+Wilder,Beast,Raptor
+Wilder,Brute,Foul
+Wilder,Fallen,Femme
+Wilder,Femme,Foul
+Wilder,Femme,Jirae
+Wilder,Fiend,Jirae
+Wilder,Holy,Raptor
+Wilder,Jirae,Tyrant
+Yoma,Beast,Jirae
+Yoma,Brute,Divine
+Yoma,Dragon,Raptor
+Yoma,Fairy,Fallen
+Yoma,Fairy,Jirae
+Yoma,Fairy,Lady
+Yoma,Fairy,Snake
+Yoma,Fairy,Wilder
+Yoma,Fiend,Genma
+Yoma,Genma,Holy
+Yoma,Genma,Tyrant
+Yoma,Genma,Vile
+Yoma,Genma,Wilder
+Yoma,Haunt,Night

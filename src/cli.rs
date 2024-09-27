@@ -9,6 +9,11 @@ pub struct CliArgs {
     /// Raw CSV file with the demon dataset.
     #[arg(long)]
     pub raw_demon_file: Option<PathBuf>,
+
+    /// Raw CSV file with the basic fusion dataset.
+    #[arg(long)]
+    pub raw_basic_fusion_file: Option<PathBuf>,
+
     /// IRI namespace of the demon dataset.
     #[arg(short, long)]
     pub demon_rdf_namespace: Option<String>,
@@ -24,6 +29,10 @@ pub struct CliArgs {
     /// IRI namespace of the game.
     #[arg(short, long)]
     pub game_rdf_namespace: Option<String>,
+
+    /// IRI namespace of the basic rules.
+    #[arg(short, long)]
+    pub basic_rules_rdf_namespace: Option<String>,
 
     /// Path of the RDF vocabulary template file.
     #[arg(long)]

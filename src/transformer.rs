@@ -2,6 +2,7 @@ use super::*;
 use sophia_api::graph::Graph;
 use sophia_api::ns::{IriRef, Namespace};
 use sophia_api::serializer::TripleSerializer;
+use sophia_api::term::bnode_id::BnodeId;
 use sophia_api::term::SimpleTerm;
 use sophia_api::MownStr;
 use sophia_turtle::serializer::turtle::TurtleSerializer;
@@ -33,6 +34,90 @@ pub trait DemonCharacteristicTransformer<'a> {
     fn identifier_to_rdf(namespace: &'a Namespace<String>, id: &'a String) -> SimpleTerm<'a>;
 }
 
+pub struct BasicFusionRuleTransformer<'a> {
+    pub rules: Vec<BasicFusionRule>,
+    namespace: &'a Namespace<String>,
+
+    race_namespace: &'a Namespace<String>,
+    #[allow(dead_code)]
+    demon_namespace: &'a Namespace<String>,
+
+    with_race_1_term: SimpleTerm<'a>,
+    with_race_2_term: SimpleTerm<'a>,
+    fusion_race_result_term: SimpleTerm<'a>,
+}
+
+impl<'a> BasicFusionRuleTransformer<'a> {
+    pub fn new(
+        namespace: &'a Namespace<String>,
+        demon_namespace: &'a Namespace<String>,
+        race_namespace: &'a Namespace<String>,
+        vocabulary_namespace: &'a Namespace<String>,
+    ) -> Self {
+        let with_race_1_iri = vocabulary_namespace.get("withRace1").unwrap();
+        let with_race_1_term = SimpleTerm::Iri(with_race_1_iri.to_iriref());
+
+        let with_race_2_iri = vocabulary_namespace.get("withRace2").unwrap();
+        let with_race_2_term = SimpleTerm::Iri(with_race_2_iri.to_iriref());
+
+        let fusion_race_result_iri = vocabulary_namespace.get("fusionRaceResult").unwrap();
+        let fusion_race_result_term = SimpleTerm::Iri(fusion_race_result_iri.to_iriref());
+
+        Self {
+            rules: Vec::new(),
+            namespace,
+
+            race_namespace,
+            demon_namespace,
+
+            with_race_1_term,
+            with_race_2_term,
+            fusion_race_result_term,
+        }
+    }
+}
+
+impl<'a> Transformer<'a> for BasicFusionRuleTransformer<'a> {
+    fn to_rdf(&'a self) -> impl Graph {
+        let mut triples: Vec<[SimpleTerm; 3]> = Vec::new();
+        for BasicFusionRule {
+            result,
+            demon1,
+            demon2,
+        } in self.rules.iter()
+        {
+            if result.contains("*") {
+                continue;
+            }
+
+            let blank_node_id = format!("{}_{}", demon1, demon2);
+            let blank_node_id: MownStr<'a> = MownStr::from(blank_node_id);
+            let blank_node_id = BnodeId::new(blank_node_id).unwrap();
+            let rule_blank_node = SimpleTerm::BlankNode(blank_node_id);
+
+            let race_1_term = RaceTransformer::identifier_to_rdf(&self.race_namespace, demon1);
+            let race_2_term = RaceTransformer::identifier_to_rdf(&self.race_namespace, demon2);
+            let result_term = RaceTransformer::identifier_to_rdf(self.namespace, result);
+
+            triples.push([
+                rule_blank_node.clone(),
+                self.with_race_1_term.clone(),
+                race_1_term,
+            ]);
+            triples.push([
+                rule_blank_node.clone(),
+                self.with_race_2_term.clone(),
+                race_2_term,
+            ]);
+            triples.push([
+                rule_blank_node,
+                self.fusion_race_result_term.clone(),
+                result_term,
+            ]);
+        }
+        triples
+    }
+}
 /// Transform a [`Demon`] struct into a RDF named subgraph.
 pub struct DemonTransformer<'a> {
     /// [`Demon`] collected

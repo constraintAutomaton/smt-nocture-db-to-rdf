@@ -34,6 +34,7 @@ pub trait DemonCharacteristicTransformer<'a> {
     fn identifier_to_rdf(namespace: &'a Namespace<String>, id: &'a String) -> SimpleTerm<'a>;
 }
 
+/// Transform a [`BasicFusionRule`] struct into a RDF named subgraph.
 pub struct BasicFusionRuleTransformer<'a> {
     pub rules: Vec<BasicFusionRule>,
     namespace: &'a Namespace<String>,
@@ -42,8 +43,11 @@ pub struct BasicFusionRuleTransformer<'a> {
     #[allow(dead_code)]
     demon_namespace: &'a Namespace<String>,
 
+    /// A term to define the race of the first demon to be fused.
     with_race_1_term: SimpleTerm<'a>,
+    /// A term to define the race of the second demon to be fused.
     with_race_2_term: SimpleTerm<'a>,
+    /// A term to define the resultant race of the fusion of the two demons.
     fusion_race_result_term: SimpleTerm<'a>,
 }
 

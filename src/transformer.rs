@@ -189,7 +189,7 @@ impl<'a> Transformer<'a> for DemonTransformer<'a> {
         });
 
         for demon in self.demon.iter() {
-            let instance_iri = self.namespace.get(&demon.name).unwrap();
+            let instance_iri = self.namespace.get(&demon.iri).unwrap();
             let instance_term = SimpleTerm::Iri(instance_iri.to_iriref());
 
             let instance_name_term =

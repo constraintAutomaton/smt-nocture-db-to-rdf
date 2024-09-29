@@ -146,7 +146,9 @@ fn generate_demon_rdf(
     let mut rdr = csv::Reader::from_reader(buf_reader);
 
     for result in rdr.deserialize() {
-        let demon_record: Demon = result?;
+        let mut demon_record: Demon = result?;
+        // replace space to _ to create an IRI
+        demon_record.iri = demon_record.name.replace(" ", "_");
 
         demon_transformer.demon.push(demon_record.clone());
         race_transformer.races.insert(demon_record.race);
@@ -183,6 +185,8 @@ struct Demon {
     pub name: String,
     pub race: String,
     pub lv: String,
+    #[serde(skip)]
+    pub iri:String
 }
 
 #[derive(Debug, Deserialize, Clone)]

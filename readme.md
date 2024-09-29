@@ -13,7 +13,7 @@ cargo run --release -- \\
 -b "{URL of the desired demon dataset}/basic_rules.ttl#"\\ 
 -r "{URL of the desired race dataset}/race.ttl#" \\
 -v "{URL of the desired vocabulary dataset}/vocabulary.ttl#" \\
--g "{URL of the desired game dataset}/vocabulary.ttl#"
+-g "{URL of the desired game dataset}/game.ttl#"
 ```
 
 See the usage section for more info on the parameters.

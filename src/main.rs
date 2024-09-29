@@ -3,6 +3,7 @@ use cli::CliArgs;
 use csv;
 use serde::Deserialize;
 use sophia_api::ns::Namespace;
+use std::collections::hash_set::HashSet;
 use std::{
     fs::{self, File},
     io::{BufReader, Write},
@@ -22,8 +23,6 @@ fn main() {
         game_rdf_namespace,
         path_vocabulary,
         path_game,
-        raw_demon_file,
-        raw_basic_fusion_file,
         basic_rules_rdf_namespace,
     } = CliArgs::parse();
 
@@ -42,10 +41,6 @@ fn main() {
     let path_vocabulary = path_vocabulary.unwrap_or(PathBuf::from("./vocabulary.ttl_template"));
     let path_game = path_game.unwrap_or(PathBuf::from("./game.ttl_template"));
 
-    let raw_demon_file = raw_demon_file.unwrap_or(PathBuf::from("./demon_simple_info.csv"));
-    let raw_basic_fusion_file =
-        raw_basic_fusion_file.unwrap_or(PathBuf::from("./fusion_basic_rule.csv"));
-
     generate_demon_rdf(
         &demon_rdf_file_namespace,
         &race_rdf_file_namespace,
@@ -55,7 +50,6 @@ fn main() {
         &out_path,
         &path_vocabulary,
         &path_game,
-        &raw_demon_file,
     )
     .unwrap();
 
@@ -65,7 +59,6 @@ fn main() {
         &vocabulary_rdf_namespace,
         basic_rules_rdf_namespace,
         &out_path,
-        &raw_basic_fusion_file,
     )
     .unwrap();
 }
@@ -78,9 +71,8 @@ fn generate_basic_fusion_rule(
     basic_rules_rdf_namespace: String,
 
     out_path: &PathBuf,
-
-    raw_file_basic_rule: &PathBuf,
 ) -> Result<(), Box<dyn std::error::Error>> {
+    let raw_file_basic_rule = PathBuf::from("./fusion_basic_rule.csv");
     let basic_rule_rdf_file_namespace = Namespace::new(basic_rules_rdf_namespace)?;
 
     let mut rule_transformer = BasicFusionRuleTransformer::new(
@@ -117,14 +109,15 @@ fn generate_demon_rdf(
     out_path: &PathBuf,
     path_vocabulary: &PathBuf,
     path_game: &PathBuf,
-
-    raw_demon_file: &PathBuf,
 ) -> Result<(), Box<dyn std::error::Error>> {
+    let raw_demon_file: PathBuf = PathBuf::from("./demon_simple_info.csv");
+    let special_fusion_demon_sets = parse_special_fusion_sets()?;
     let mut race_transformer = RaceTransformer::new(race_rdf_namespace, &vocabulary_rdf_namespace);
     let mut demon_transformer = DemonTransformer::new(
         demon_rdf_namespace,
         race_rdf_namespace,
         &vocabulary_rdf_namespace,
+        &special_fusion_demon_sets,
     );
 
     let race_output_file = out_path.join("race.ttl");
@@ -180,13 +173,19 @@ fn rdf_from_template(
     Ok(())
 }
 
+fn parse_special_fusion_sets() -> Result<SpecialFusionDemonSets, Box<dyn std::error::Error>> {
+    let path = fs::read_to_string("./special_fusion.json")?;
+    let output: SpecialFusionDemonSets = serde_json::from_str(&path)?;
+    Ok(output)
+}
+
 #[derive(Debug, Deserialize, Clone)]
 struct Demon {
     pub name: String,
     pub race: String,
     pub lv: String,
     #[serde(skip)]
-    pub iri:String
+    pub iri: String,
 }
 
 #[derive(Debug, Deserialize, Clone)]
@@ -194,4 +193,12 @@ struct BasicFusionRule {
     pub result: String,
     pub demon1: String,
     pub demon2: String,
+}
+
+#[derive(Debug, Deserialize)]
+struct SpecialFusionDemonSets {
+    pub evolve_caught: HashSet<String>,
+    pub special_fusion: HashSet<String>,
+    pub death_stone: HashSet<String>,
+    pub exception: HashSet<String>,
 }

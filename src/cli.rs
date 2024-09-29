@@ -6,14 +6,6 @@ use clap::Parser;
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
 pub struct CliArgs {
-    /// Raw CSV file with the demon dataset.
-    #[arg(long)]
-    pub raw_demon_file: Option<PathBuf>,
-
-    /// Raw CSV file with the basic fusion dataset.
-    #[arg(long)]
-    pub raw_basic_fusion_file: Option<PathBuf>,
-
     /// IRI namespace of the demon dataset.
     #[arg(short, long)]
     pub demon_rdf_namespace: Option<String>,

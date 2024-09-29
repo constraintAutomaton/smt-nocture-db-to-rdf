@@ -129,7 +129,7 @@ pub struct DemonTransformer<'a> {
     pub demon: Vec<Demon>,
     namespace: &'a Namespace<String>,
     race_namespace: &'a Namespace<String>,
-
+    special_fusion_demon_sets: &'a SpecialFusionDemonSets,
 
     /// RDF class of the demons.
     demon_term: SimpleTerm<'a>,
@@ -141,6 +141,8 @@ pub struct DemonTransformer<'a> {
     race_term: SimpleTerm<'a>,
     /// RDF predicate to define the base level of a demon.
     lv_term: SimpleTerm<'a>,
+    /// RDF predicate to define that a demon cannot be fused with basic fusion.
+    cannot_fused_with_basic_rules: SimpleTerm<'a>,
 }
 
 impl<'a> DemonTransformer<'a> {
@@ -148,6 +150,7 @@ impl<'a> DemonTransformer<'a> {
         namespace: &'a Namespace<String>,
         race_namespace: &'a Namespace<String>,
         vocabulary_namespace: &'a Namespace<String>,
+        special_fusion_demon_sets: &'a SpecialFusionDemonSets,
     ) -> Self {
         let demon_iri = vocabulary_namespace.get("DemonSmt3").unwrap();
         let demon_term = SimpleTerm::Iri(demon_iri.to_iriref());
@@ -167,6 +170,12 @@ impl<'a> DemonTransformer<'a> {
         let lv_iri = vocabulary_namespace.get("hasBasedLevel").unwrap();
         let lv_term = SimpleTerm::Iri(lv_iri.to_iriref());
 
+        let cannot_fused_with_basic_rules_iri = vocabulary_namespace
+            .get("cannotBeFusedWithBasicRules")
+            .unwrap();
+        let cannot_fused_with_basic_rules =
+            SimpleTerm::Iri(cannot_fused_with_basic_rules_iri.to_iriref());
+
         Self {
             demon: Vec::new(),
             namespace,
@@ -176,7 +185,27 @@ impl<'a> DemonTransformer<'a> {
             race_term,
             lv_term,
             race_namespace,
+            special_fusion_demon_sets,
+            cannot_fused_with_basic_rules,
         }
+    }
+
+    fn cannot_be_fused_with_basic_rules(&self, demon_name: &String) -> bool {
+        self.special_fusion_demon_sets
+            .death_stone
+            .contains(demon_name)
+            || self
+                .special_fusion_demon_sets
+                .evolve_caught
+                .contains(demon_name)
+            || self
+                .special_fusion_demon_sets
+                .exception
+                .contains(demon_name)
+            || self
+                .special_fusion_demon_sets
+                .special_fusion
+                .contains(demon_name)
     }
 }
 
@@ -194,6 +223,13 @@ impl<'a> Transformer<'a> for DemonTransformer<'a> {
             .unwrap()
         });
 
+        let boolean_term = BOOLEAN_TERM.get_or_init(|| {
+            IriRef::new(MownStr::from_str(
+                "http://www.w3.org/2001/XMLSchema#boolean",
+            ))
+            .unwrap()
+        });
+
         for demon in self.demon.iter() {
             let instance_iri = self.namespace.get(&demon.iri).unwrap();
             let instance_term = SimpleTerm::Iri(instance_iri.to_iriref());
@@ -206,6 +242,17 @@ impl<'a> Transformer<'a> for DemonTransformer<'a> {
 
             let race_identifier: SimpleTerm<'a> =
                 RaceTransformer::identifier_to_rdf(&self.race_namespace, &demon.race);
+
+            let basic_fusion_value =
+                if self.cannot_be_fused_with_basic_rules(&demon.name) {
+                    "true"
+                } else {
+                    "false"
+                };
+            let basic_fusion_term = SimpleTerm::LiteralDatatype(
+                MownStr::from_str(basic_fusion_value),
+                boolean_term.clone(),
+            );
 
             triples.push([
                 instance_term.clone(),
@@ -229,6 +276,12 @@ impl<'a> Transformer<'a> for DemonTransformer<'a> {
                 instance_term.clone(),
                 self.lv_term.clone(),
                 instance_level_term,
+            ]);
+
+            triples.push([
+                instance_term.clone(),
+                self.cannot_fused_with_basic_rules.clone(),
+                basic_fusion_term
             ]);
         }
 
@@ -309,3 +362,4 @@ impl<'a> Transformer<'a> for RaceTransformer<'a> {
 
 static STRING_TERM: OnceLock<IriRef<MownStr<'static>>> = OnceLock::new();
 static INTEGER_TERM: OnceLock<IriRef<MownStr<'static>>> = OnceLock::new();
+static BOOLEAN_TERM: OnceLock<IriRef<MownStr<'static>>> = OnceLock::new();

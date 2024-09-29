@@ -36,6 +36,7 @@ pub trait DemonCharacteristicTransformer<'a> {
 
 /// Transform a [`BasicFusionRule`] struct into a RDF named subgraph.
 pub struct BasicFusionRuleTransformer<'a> {
+    /// [`BasicFusionRule`] collected
     pub rules: Vec<BasicFusionRule>,
     namespace: &'a Namespace<String>,
 
@@ -128,6 +129,7 @@ pub struct DemonTransformer<'a> {
     pub demon: Vec<Demon>,
     namespace: &'a Namespace<String>,
     race_namespace: &'a Namespace<String>,
+
 
     /// RDF class of the demons.
     demon_term: SimpleTerm<'a>,
@@ -237,6 +239,7 @@ impl<'a> Transformer<'a> for DemonTransformer<'a> {
 #[derive(Clone)]
 /// Transform a race from a [`Demon`] struct into a unique RDF terms.
 pub struct RaceTransformer<'a> {
+    /// Race collected
     pub races: HashSet<String>,
     namespace: &'a Namespace<String>,
 

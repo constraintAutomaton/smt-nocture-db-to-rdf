@@ -1,0 +1,116 @@
+@base <https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl#> .
+
+@prefix rdf: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdfs: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <https://schema.org/> .
+
+<DemonSmt3> a owl:Class ;
+    rdfs:label "A demon from Shin Megami Tensei III"@en ; 
+    rdfs:label "Un démon du jeu Shin Megami Tensei III"@fr ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (
+            [ a owl:Restriction ;
+              owl:onProperty <isOfRace> ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty <hasBasedLevel> ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty schema:name ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty <cannotBeFusedWithBasicRules>;
+              owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+              owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger  
+            ]
+        )                             
+    ] .
+
+<Race> a owl:Class ;
+    rdfs:label "A race of demon"@en ; 
+    rdfs:label "Une race de démon"@fr ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (
+            [ a owl:Restriction ;
+              owl:onProperty schema:name ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+        )                             
+    ] .
+
+<hasBasedLevel> a owl:ObjectProperty ;
+    rdfs:label "Has a base level of"@en ; 
+    rdfs:label "À un niveau initial de"@fr ;
+    rdfs:comment "Define the initial demon when it is recruited."@en ;
+    rdfs:comment "Définie le niveau d'un démon quand il est recruté."@fr ;
+
+    rdfs:domain <DemonSmt3> ;
+    rdfs:range xsd:integer .
+
+<isOfRace> a owl:ObjectProperty ;
+    rdfs:label "Is of the demon race"@en ; 
+    rdfs:label "Est de la race de démon"@fr ;
+    rdfs:comment "Define the race of a demon."@en ;
+    rdfs:comment "Définie la race d'un démon."@fr ;
+
+    rdfs:domain <DemonSmt3> ;
+    rdfs:range <Race> .
+
+<BasicFusionRule> a owl:Class ;
+    rdfs:label "A basic fusion rule for two demons."@en ; 
+    rdfs:label "Une règle de base d'une fusion de deux démons"@fr ;
+    rdfs:comment "A basic fusion rule. It describes how the fusion of two demons of certain races produces a demon of another race."@en ;
+    rdfs:comment "Une règle de base de fusion. La règle décrit comment la fusion de deux démons de certaines races produit un démon d'une autre race."@fr ;
+
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (
+            [ a owl:Restriction ;
+              owl:onProperty <withRace1> ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty <withRace2> ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty <fusionRaceResult> ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+        )                             
+    ] .
+
+<withRace1> a owl:ObjectProperty ;
+    rdfs:label "When fused with a first demon of the race"@en ; 
+    rdfs:label "Est fusionné avec un premier démon de la race"@fr ;
+
+    rdfs:domain <BasicFusionRule> ;
+    rdfs:range <Race> .
+
+<withRace2> a owl:ObjectProperty ;
+    rdfs:label "When fused with a second demon of the race"@en ; 
+    rdfs:label "Est fusionné avec un deuxième démon de la race"@fr ;
+
+    rdfs:domain <BasicFusionRule> ;
+    rdfs:range <Race> .
+
+<fusionRaceResult> a owl:ObjectProperty ;
+    rdfs:label "The resulting demon race of a basic fusion rule"@en ; 
+    rdfs:label "La race de démon résultant d'une règle de fusion de base"@fr ;
+
+    rdfs:domain <BasicFusionRule> ;
+    rdfs:range <Race> .
+
+<cannotBeFusedWithBasicRules> a owl:ObjectProperty ;
+    rdfs:label "The demon cannot be recruited through basic fusion"@en ; 
+    rdfs:label "Le démon ne peut pas être recruté à la suite d'une fusion de base"@fr ;
+
+    rdfs:domain <DemonSmt3> ;
+    rdfs:range xsd:boolean .

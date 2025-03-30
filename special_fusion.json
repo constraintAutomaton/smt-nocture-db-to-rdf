@@ -1,0 +1,53 @@
+{
+    "evolve_caught": [
+        "Wu Kong",
+        "Parvati",
+        "Skadi",
+        "Senri",
+        "Karasu",
+        "Efreet",
+        "High Pixie",
+        "Raja Naga",
+        "Aciel",
+        "Beelzebub (Fly)",
+        "Queen Mab",
+        "Lilith",
+        "Uriel",
+        "Valkyrie",
+        "Ganesha",
+        "Kurama",
+        "Hanuman",
+        "Cu Chulainn",
+        "Gui Xian",
+        "Long",
+        "Makami",
+        "Garuda",
+        "Albion"
+    ],
+    "special_fusion": [
+        "Amaterasu",
+        "Shiva",
+        "Ongyo-Ki",
+        "Girimehkala",
+        "Samael",
+        "Raphael",
+        "Gabriel",
+        "Michael",
+        "Metatron",
+        "Gurr"
+    ],
+    "death_stone": [
+        "Matador",
+        "Daisoujou",
+        "Hell Biker",
+        "White Rider",
+        "Red Rider",
+        "Black Rider",
+        "Pale Rider",
+        "The Harlot",
+        "Trumpeter"
+    ],
+    "exception": [
+        "Sakahagi"
+    ]
+}

@@ -27,6 +27,8 @@ use sophia_turtle::serializer::turtle::TurtleSerializer;
 use std::collections::hash_set::HashSet;
 use std::fs::File;
 use std::sync::OnceLock;
+use crate::domain::BasicFusionRule;
+use crate::domain::*;
 
 /// Transform a payload into an RDF dataset.
 pub trait Transformer<'a> {

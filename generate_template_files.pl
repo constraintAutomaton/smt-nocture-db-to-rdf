@@ -4,6 +4,7 @@
 :- use_module(library(debug)).
 :- use_module(library(dcgs)).
 
+% We can do it in a streaming matter, but the files are small so it does not really matter, but the code is kindof ugly
 generate_file_with_iri(File, Iri, Out) :- 
     phrase_from_file(file_to_list(X1) , File),
     replace_template(X1, X, Iri),

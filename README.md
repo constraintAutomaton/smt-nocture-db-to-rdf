@@ -3,6 +3,7 @@
 Generator of an RDF dataset of demon information from [Shin Megami Tensei III: Nocturne](https://en.wikipedia.org/wiki/Shin_Megami_Tensei_III:_Nocturne).
 
 ## Building
+
 `cargo build --release`
 
 ## Generating the dataset locally
@@ -18,6 +19,14 @@ cargo run --release -- \\
 See the usage section for more info on the parameters.
 
 ### Usage
+
+```bash
+generate_vocabulary_file("https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl#") .
+
+generate_game_file("https://constraintautomaton.github.io/smt-nocture-db-to-rdf/game.ttl#") .
+```
+
+
 ```
 A Simple program to generate a Shin Megami Tensei III demon dataset
 

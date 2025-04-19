@@ -16,8 +16,8 @@
     dct:title "Shin Megami Tensei Vocabulary Dataset" ;
     dct:license <http://opendatacommons.org/licenses/odbl/1.0/> ;
     dct:rights <http://opendatacommons.org/licenses/dbcl/1.0/> ;
-    dct:creator "Bryan-Elliott Tam"
-    dct:created "2025-04-19"^^<http://www.w3.org/2001/XMLSchema#date> .
+    dct:creator "Bryan-Elliott Tam";
+    dct:created "2025-04-19"^^<http://www.w3.org/2001/XMLSchema#date> ;
     dct:description "This dataset is licensed under the ODbL; individual contents are under the DbCL." .
 
 <DemonSmt3> a owl:Class ;

@@ -3,6 +3,7 @@
 :- use_module(library(clpz)).
 :- use_module(library(debug)).
 :- use_module(library(dcgs)).
+:- use_module('./util.pl').
 
 % We can do it in a streaming matter, but the files are small so it does not really matter, but the code is kindof ugly
 generate_file_with_iri(File, Iri, Out) :- 
@@ -15,9 +16,6 @@ generate_file_with_iri(File, Iri, Out) :-
 generate_vocabulary_file(Iri) :- generate_file_with_iri('./vocabulary.ttl_template', Iri,  './output/vocabulary.ttl').
 generate_game_file(Iri) :- generate_file_with_iri('./game.ttl_template', Iri,  './output/game.ttl').
 
-replace_template(Xs0, Xs1, Element):- 
-    append([Front, "{}" ,Rest], Xs0),
-    append([Front, Element ,Rest], Xs1).
 
 file_to_list(X) --> file_to_list_(X).
 file_to_list_([X0|X]) --> [X0], file_to_list_(X) .

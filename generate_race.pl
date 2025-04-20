@@ -5,13 +5,17 @@
 :- use_module(library(lists)).
 :- use_module('./util.pl').
 
-generate(X, RaceList, Iri) :- 
-    phrase_from_file(json_chars(X) , './demon_data/fusion-chart.json'),
-    get_races(X, Json_race_list),
+generate(Iri, IriVocab) :- 
+    fusion_chart(Json),
+    get_races(Json, Json_race_list),
     json_race_list_to_list(Json_race_list, RaceList),
     open('./output/race.ttl', write, Stream),
     license(Iri, License),
     maplist(write(Stream), License),
+    maplist(race_triples(IriVocab), RaceList, TripleRaceList),
+    append(TripleRaceList, TripleRaceListFlatten),
+    write(Stream, '\n\n'),
+    maplist(write(Stream), TripleRaceListFlatten),
     close(Stream)
     .
 
@@ -25,14 +29,13 @@ json_race_list_to_list(list([string(Race)| Rest]), RaceList) :- json_race_list_t
 json_race_list_to_list([string(Race)| Rest], RaceList) :- json_race_list_to_list(Rest, RaceList0), append([Race], RaceList0 ,RaceList).
 
 json_race_list_to_list([string(Race)], [Race]).
-json_race_list_to_list([], []).
 
-race_triples(Race,IriVocab, Triples) :- 
+race_triples(IriVocab, Race, Triples) :- 
     append(["<", Race, ">"], S),
     A = "a",
     append(["<", IriVocab,">"], RaceRdfType),
     Schema = "<https://schema.org/name>",
-    append([S," ", A, " ", RaceRdfType, "\n", "\t", Schema, " ", Race], Triples).
+    append([S," ", A, " ", RaceRdfType, ";\n", "\t", Schema, " ", "\"",Race, "\"", ".\n"], Triples).
 
 license(Iri, License) :-
 Template = "# This data  is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/.\n\

@@ -5,7 +5,7 @@
 :- use_module(library(lists)).
 :- use_module('./util.pl').
 
-generate(Iri, IriVocab) :- 
+generate_race_file(Iri, IriVocab) :- 
     fusion_chart(Json),
     get_races(Json, Json_race_list),
     json_race_list_to_list(Json_race_list, RaceList),
@@ -16,12 +16,15 @@ generate(Iri, IriVocab) :-
     append(TripleRaceList, TripleRaceListFlatten),
     write(Stream, '\n\n'),
     maplist(write(Stream), TripleRaceListFlatten),
-    close(Stream)
-    .
+    close(Stream).
 
 get_races(pairs([string("races")-RaceList|_]), RaceList).
-get_races(pairs([string(_)-_|X]), RaceList):- get_races(X, RaceList).
-get_races([], _) :- false.
+get_races(pairs([string(_)-_|X]), RaceList):- get_races_(X, RaceList).
+
+get_races(pairs([string(_)-_|X]), RaceList):- get_races_(X, RaceList).
+get_races_([string("races")-RaceList|_], RaceList).
+
+get_races_([], _) :- false.
 
 
 json_race_list_to_list(list([string(Race)| Rest]), RaceList) :- json_race_list_to_list(Rest, RaceList0), append([Race], RaceList0 ,RaceList).
@@ -33,7 +36,7 @@ json_race_list_to_list([string(Race)], [Race]).
 race_triples(IriVocab, Race, Triples) :- 
     append(["<", Race, ">"], S),
     A = "a",
-    append(["<", IriVocab,">"], RaceRdfType),
+    append(["<", IriVocab, "Race", ">"], RaceRdfType),
     Schema = "<https://schema.org/name>",
     append([S," ", A, " ", RaceRdfType, ";\n", "\t", Schema, " ", "\"",Race, "\"", ".\n"], Triples).
 

@@ -13,8 +13,8 @@ generate_file_with_iri(File, Iri, Out) :-
     maplist(write(Stream), X),
     close(Stream).
 
-generate_vocabulary_file(Iri) :- generate_file_with_iri('./vocabulary.ttl_template', Iri,  './output/vocabulary.ttl').
-generate_game_file(Iri) :- generate_file_with_iri('./game.ttl_template', Iri,  './output/game.ttl').
+generate_vocabulary_file(Iri) :- generate_file_with_iri('../vocabulary.ttl_template', Iri,  '../output/vocabulary.ttl').
+generate_game_file(Iri) :- generate_file_with_iri('../game.ttl_template', Iri,  '../output/game.ttl').
 
 
 file_to_list(X) --> file_to_list_(X).

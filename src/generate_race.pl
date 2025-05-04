@@ -9,7 +9,7 @@ generate_race_file(Iri, IriVocab) :-
     fusion_chart(Json),
     get_races(Json, Json_race_list),
     json_race_list_to_list(Json_race_list, RaceList),
-    open('./output/race.ttl', write, Stream),
+    open('../output/race.ttl', write, Stream),
     license(Iri, License),
     maplist(write(Stream), License),
     maplist(race_triples(IriVocab), RaceList, TripleRaceList),

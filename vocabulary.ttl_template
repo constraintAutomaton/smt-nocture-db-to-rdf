@@ -77,11 +77,11 @@
     rdfs:domain <DemonSmt3> ;
     rdfs:range <Race> .
 
-<BasicFusionRule> a owl:Class ;
-    rdfs:label "A basic fusion rule for two demons."@en ; 
-    rdfs:label "Une règle de base d'une fusion de deux démons"@fr ;
-    rdfs:comment "A basic fusion rule. It describes how the fusion of two demons of certain races produces a demon of another race."@en ;
-    rdfs:comment "Une règle de base de fusion. La règle décrit comment la fusion de deux démons de certaines races produit un démon d'une autre race."@fr ;
+<normalFusionRule> a owl:Class ;
+    rdfs:label "A normal fusion rule for two demons."@en ; 
+    rdfs:label "Une règle normal de fusion de deux démons"@fr ;
+    rdfs:comment "A normal fusion rule. It describes how the fusion of two demons of certain races produces a demon of another race."@en ;
+    rdfs:comment "Une règle de fusion normal. La règle décrit comment la fusion de deux démons de certaines races produit un démon d'une autre race."@fr ;
 
     owl:equivalentClass [
         a owl:Class ;

@@ -9,7 +9,7 @@
 generate_basic_rules(Iri, IriRace, IriVocab) :- 
     open('../fusion_basic_rule.csv', read, StreamCsv),
     once(phrase_from_stream(parse_csv(Data), StreamCsv)),
-    open('../output/normal_rules.ttl', write, Stream),
+    open('../output/normal_fusion_rules.ttl', write, Stream),
     fusion_rule_triples(Data, IriRace, IriVocab, Triples),
     license(Iri, License),
     maplist(write(Stream), License),
@@ -37,13 +37,14 @@ iri_rule_declaration(Race1, Race2, RuleIri):-
     append(["<", Race1, "_", Race2, ">"], RuleIri).
 
 rule_definition_triple(RuleIri, IriVocab, Triple) :-
-    append([RuleIri, " a ", IriVocab, "normalFusionRule", ";\n"], Triple).
+    append(["<", IriVocab, "NormalFusionRule", ">"], TypeTerm),
+    append([RuleIri, " a ", TypeTerm, ";\n"], Triple).
 
 rule_triple_representation(Race, IriVocab, IriRace, RuleOperator, LastElement, Triple) :-
     append(["<", IriVocab, RuleOperator, ">"], RuleOperatorTerm),
     append(["<", IriRace, Race, ">"], RaceTerm),
     if_(
-        LastElement = true,
+        LastElement == true,
         append(["\t", RuleOperatorTerm, " ",RaceTerm, ".", "\n" ], Triple),
         append(["\t", RuleOperatorTerm, " ",RaceTerm, ";", "\n" ], Triple)
     ).
@@ -68,7 +69,7 @@ Template = "# This data  is made available under the Open Database License: http
 \n\
 <>\n\
     a void:Dataset ;\n\
-    dct:title \"Shin Megami Tensei Basic Rule Dataset\" ;\n\
+    dct:title \"Shin Megami Tensei normal fusion Rule Dataset\" ;\n\
     dct:license <http://opendatacommons.org/licenses/odbl/1.0/> ;\n\
     dct:rights <http://opendatacommons.org/licenses/dbcl/1.0/> ;\n\
     dct:creator \"Bryan-Elliott Tam\" ;\n\

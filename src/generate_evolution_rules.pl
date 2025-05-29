@@ -71,5 +71,4 @@ Template = "# This data  is made available under the Open Database License: http
     dct:creator \"Bryan-Elliott Tam\" ;\n\
     dct:created \"2025-05-05\"^^<http://www.w3.org/2001/XMLSchema#date> ;\n\
     dct:description \"This dataset is licensed under the ODbL; individual contents are under the DbCL.\" ."
-, replace_template(Template, License, Iri)
-.
+, replace_template(Template, License, Iri).

@@ -1,3 +1,5 @@
+:- module(util, [replace_space/3, replace_template/3]).
+
 :- use_module(library(lists)).
 
 replace_template(Xs0, Xs1, Element):- 

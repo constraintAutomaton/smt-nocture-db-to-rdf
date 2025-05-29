@@ -1,15 +1,25 @@
+/**
+smt-nocture-db-to-rdf: A generator of an RDF dataset of demon 
+information from the video game Shin Megami Tensei III: Nocturne
+Copyright (C) 2025  Bryan-Elliott Tam
+*/
+
+:- module(demon_generator, [generate_demons/3]).
+
 :- use_module(library(serialization/json)).
 :- use_module(library(pio)).
 :- use_module(library(pairs)).
-:- use_module(library(debug)).
 :- use_module(library(lists)).
 :- use_module('./util.pl').
 
+/**
+* generate a demon RDF dataset at `../output/demon.ttl`
+*/
 generate_demons(Iri, Vocab_Iri, Race_Iri) :- 
     phrase_from_file(json_chars(Json), '../demon_data/demon-data.json'),
     open('../output/demon.ttl', write, Stream),
     demon_info(Json, Triples),
-    license(Iri, Vocab_Iri, Race_Iri, Preliminary),
+    preliminary(Iri, Vocab_Iri, Race_Iri, Preliminary),
     maplist(write(Stream), Preliminary),
     write(Stream, '\n\n'),
     append(Triples, TriplesFlatten),
@@ -20,20 +30,20 @@ demon_info(pairs(Data), Triples):- demon_info_(Data, [], Triples).
 
 demon_info_([], Acc, Acc).
 demon_info_([string(Name)-pairs([_, string("lvl")-number(Lv),string("race")-string(Race)|_])|Rest], Acc, Triples) :-
-    demon_triple(Name, Lv, Race, Demon_Triples),
+    demon_triples(Name, Lv, Race, Demon_Triples),
     demon_info_(Rest, [Demon_Triples|Acc], Triples).
 
-demon_triple(Name, Lv, Race, Triples) :-
+demon_triples(Name, Lv, Race, Triples) :-
     replace_space(Name, NameCurated, "_"),
     append(["<", NameCurated, "> ", "a vocab:DemonSmt3 ;\n"], Declaration_Triple),
     append(["\t<https://schema.org/name> \"", Name, "\" ;\n"], Name_Triple),
     append(["\tvocab:isOfRace ", "race:", Race, " ;\n"], Race_Triple),
     number_chars(Lv, Lv_Char),
-    append(["\tvocab:hasBasedLevel \"", Lv_Char,"\"^^xsd:integer .\n"], Lv_Triple),
+    append(["\tvocab:hasBasedLevel ", Lv_Char," .\n"], Lv_Triple),
     append([Declaration_Triple, Name_Triple, Race_Triple, Lv_Triple], Triples).
 
-license(Iri, Vocab_Iri, Race_Iri, Preliminary) :-
-Template = "# This data  is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/.\n\
+preliminary(Iri, Vocab_Iri, Race_Iri, Preliminary) :-
+    Template = "# This data  is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/.\n\
 # Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/\n\
 \n\
 @base <{}> .\n\

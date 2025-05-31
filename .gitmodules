@@ -1,0 +1,3 @@
+[submodule "megaten-fusion-tool"]
+	path = megaten-fusion-tool
+	url = https://github.com/aqiu384/megaten-fusion-tool.git

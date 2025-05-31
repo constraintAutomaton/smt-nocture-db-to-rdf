@@ -1,0 +1,79 @@
+/**
+smt-nocture-db-to-rdf: A generator of an RDF dataset of demon 
+information from the video game Shin Megami Tensei III: Nocturne
+Copyright (C) 2025  Bryan-Elliott Tam
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+:- module(demon_generator, [generate_demons/3]).
+
+:- use_module(library(serialization/json)).
+:- use_module(library(pio)).
+:- use_module(library(pairs)).
+:- use_module(library(lists)).
+:- use_module('./util.pl').
+
+/**
+* generate a demon RDF dataset at `../output/demon.ttl`
+*/
+generate_demons(Iri, Vocab_Iri, Race_Iri) :- 
+    phrase_from_file(json_chars(Json), '../demon_data/demon-data.json'),
+    open('../output/demon.ttl', write, Stream),
+    demon_info(Json, Triples),
+    preliminary(Iri, Vocab_Iri, Race_Iri, Preliminary),
+    maplist(write(Stream), Preliminary),
+    write(Stream, '\n\n'),
+    append(Triples, TriplesFlatten),
+    maplist(write(Stream), TriplesFlatten),
+    close(Stream).
+
+demon_info(pairs(Data), Triples):- demon_info_(Data, [], Triples).
+
+demon_info_([], Acc, Acc).
+demon_info_([string(Name)-pairs([_, string("lvl")-number(Lv),string("race")-string(Race)|_])|Rest], Acc, Triples) :-
+    demon_triples(Name, Lv, Race, Demon_Triples),
+    demon_info_(Rest, [Demon_Triples|Acc], Triples).
+
+demon_triples(Name, Lv, Race, Triples) :-
+    replace_space(Name, NameCurated, "_"),
+    append(["<", NameCurated, "> ", "a vocab:DemonSmt3 ;\n"], Declaration_Triple),
+    append(["\t<https://schema.org/name> \"", Name, "\" ;\n"], Name_Triple),
+    append(["\tvocab:isOfRace ", "race:", Race, " ;\n"], Race_Triple),
+    number_chars(Lv, Lv_Char),
+    append(["\tvocab:hasBasedLevel ", Lv_Char," .\n"], Lv_Triple),
+    append([Declaration_Triple, Name_Triple, Race_Triple, Lv_Triple], Triples).
+
+preliminary(Iri, Vocab_Iri, Race_Iri, Preliminary) :-
+    Template = "# This data  is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/.\n\
+# Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/\n\
+\n\
+@base <{}> .\n\
+\n\
+@prefix dct: <http://purl.org/dc/terms/> .\n\
+@prefix void: <http://rdfs.org/ns/void#> .\n\
+@prefix vocab: <{}> .\n\
+@prefix race: <{}> .\n\
+\n\
+<>\n\
+    a void:Dataset ;\n\
+    dct:title \"Shin Megami Tensei Demon Dataset\" ;\n\
+    dct:license <http://opendatacommons.org/licenses/odbl/1.0/> ;\n\
+    dct:rights <http://opendatacommons.org/licenses/dbcl/1.0/> ;\n\
+    dct:creator \"Bryan-Elliott Tam\" ;\n\
+    dct:created \"2025-05-29\"^^<http://www.w3.org/2001/XMLSchema#date> ;\n\
+    dct:description \"This dataset is licensed under the ODbL; individual contents are under the DbCL.\" .",
+    replace_template(Template, P0, Iri),
+    replace_template(P0, P1, Vocab_Iri),
+    replace_template(P1, Preliminary, Race_Iri).

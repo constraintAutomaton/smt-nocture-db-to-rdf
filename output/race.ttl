@@ -1,0 +1,78 @@
+# This data  is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/.
+# Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/
+
+@base <https://constraintautomaton.github.io/smt-nocture-db-to-rdf/race.ttl> .
+
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix vocab: <https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl> .
+
+<>
+    a void:Dataset ;
+    dct:title "Shin Megami Tensei Race Dataset" ;
+    dct:license <http://opendatacommons.org/licenses/odbl/1.0/> ;
+    dct:rights <http://opendatacommons.org/licenses/dbcl/1.0/> ;
+    dct:creator "Bryan-Elliott Tam" ;
+    dct:created "2025-04-19"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    dct:description "This dataset is licensed under the ODbL; individual contents are under the DbCL." .
+
+<Deity> a vocab:Race ;
+	 <https://schema.org/name> "Deity" .
+<Megami> a vocab:Race ;
+	 <https://schema.org/name> "Megami" .
+<Fury> a vocab:Race ;
+	 <https://schema.org/name> "Fury" .
+<Lady> a vocab:Race ;
+	 <https://schema.org/name> "Lady" .
+<Kishin> a vocab:Race ;
+	 <https://schema.org/name> "Kishin" .
+<Holy> a vocab:Race ;
+	 <https://schema.org/name> "Holy" .
+<Yoma> a vocab:Race ;
+	 <https://schema.org/name> "Yoma" .
+<Fairy> a vocab:Race ;
+	 <https://schema.org/name> "Fairy" .
+<Divine> a vocab:Race ;
+	 <https://schema.org/name> "Divine" .
+<Fallen> a vocab:Race ;
+	 <https://schema.org/name> "Fallen" .
+<Snake> a vocab:Race ;
+	 <https://schema.org/name> "Snake" .
+<Beast> a vocab:Race ;
+	 <https://schema.org/name> "Beast" .
+<Jirae> a vocab:Race ;
+	 <https://schema.org/name> "Jirae" .
+<Brute> a vocab:Race ;
+	 <https://schema.org/name> "Brute" .
+<Femme> a vocab:Race ;
+	 <https://schema.org/name> "Femme" .
+<Vile> a vocab:Race ;
+	 <https://schema.org/name> "Vile" .
+<Tyrant> a vocab:Race ;
+	 <https://schema.org/name> "Tyrant" .
+<Night> a vocab:Race ;
+	 <https://schema.org/name> "Night" .
+<Wilder> a vocab:Race ;
+	 <https://schema.org/name> "Wilder" .
+<Haunt> a vocab:Race ;
+	 <https://schema.org/name> "Haunt" .
+<Foul> a vocab:Race ;
+	 <https://schema.org/name> "Foul" .
+<Seraph> a vocab:Race ;
+	 <https://schema.org/name> "Seraph" .
+<Wargod> a vocab:Race ;
+	 <https://schema.org/name> "Wargod" .
+<Genma> a vocab:Race ;
+	 <https://schema.org/name> "Genma" .
+<Dragon> a vocab:Race ;
+	 <https://schema.org/name> "Dragon" .
+<Avatar> a vocab:Race ;
+	 <https://schema.org/name> "Avatar" .
+<Avian> a vocab:Race ;
+	 <https://schema.org/name> "Avian" .
+<Raptor> a vocab:Race ;
+	 <https://schema.org/name> "Raptor" .
+<Entity> a vocab:Race ;
+	 <https://schema.org/name> "Entity" .
+<Fiend> a vocab:Race ;
+	 <https://schema.org/name> "Fiend" .

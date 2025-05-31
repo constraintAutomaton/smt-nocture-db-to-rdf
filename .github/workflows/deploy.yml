@@ -1,0 +1,44 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code from the main branch
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Switch to 'gh-pages' branch and clean old content
+      - name: Deploy to GitHub Pages
+        run: |
+          # Configure git
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Restart gh-pages branch
+          git branch -D gh-pages || echo "branch gh-pages does not exist"
+          git checkout --orphan gh-pages
+
+          # Don't ignore index.html
+          git rm --cached ./output/index.html
+
+          # Remove all existing files from the branch
+          git rm -rf .
+
+          # Copy the generated output files into the root directory
+          cp -r output/* .
+
+          # Remove extra files
+          rm -r output
+          rm -r target
+
+          # Add and commit the changes
+          git add .
+          git commit -m "Deploy generated files to GitHub Pages"
+
+          # Push the changes to 'gh-pages' (force to replace old content)
+          git push --force "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages

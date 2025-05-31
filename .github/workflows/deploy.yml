@@ -30,7 +30,7 @@ jobs:
           git rm -rf .
 
           # Copy the generated output files into the root directory
-          mv -r output/* .
+          mv output/* .
 
           # Remove extra files
           rm -r output

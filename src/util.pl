@@ -1,6 +1,8 @@
-:- module(util, [replace_space/3, replace_template/3]).
+:- module(util, [replace_space/3, replace_template/3, fusion_chart/1]).
 
 :- use_module(library(lists)).
+:- use_module(library(pio)).
+:- use_module(library(serialization/json)).
 
 replace_template(Xs0, Xs1, Element):- 
     append([Front, "{}" ,Rest], Xs0),

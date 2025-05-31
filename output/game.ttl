@@ -1,0 +1,21 @@
+# This data  is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/.
+# Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/
+
+@base <foo/game.ttl> .
+@prefix schema: <https://schema.org/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+
+<>
+    a void:Dataset ;
+    dct:title "Shin Megami Tensei Game Dataset" ;
+    dct:license <http://opendatacommons.org/licenses/odbl/1.0/> ;
+    dct:rights <http://opendatacommons.org/licenses/dbcl/1.0/> ;
+    dct:creator "Bryan-Elliott Tam"
+    dct:created "2025-04-19"^^<http://www.w3.org/2001/XMLSchema#date> .
+    dct:description "This dataset is licensed under the ODbL; individual contents are under the DbCL." .
+
+
+<smt3> a schema:VideoGame ;
+    schema:name "Shin Megami Tensei III: Nocturne" ;
+    schema:sameAs <http://dbpedia.org/resource/Shin_Megami_Tensei_III:_Nocturne> .

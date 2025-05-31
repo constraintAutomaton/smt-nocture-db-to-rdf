@@ -15,11 +15,11 @@ Copyright (C) 2025  Bryan-Elliott Tam
 /**
 * generate an evolution rule RDF dataset at `../output/evolution_rules.ttl`
 */
-generate_evolution_rules(Iri, VocabPrefix, DemonPrefix) :- 
+generate_evolution_rules(Iri, Vocab_Prefix, Demon_Prefix) :- 
     phrase_from_file(json_chars(Json), '../demon_data/evolutions.json'),
     open('../output/evolution_rules.ttl', write, Stream),
     evolution_info(Json, Triples),
-    preliminary(Iri, VocabPrefix, DemonPrefix, Preliminary),
+    preliminary(Iri, Vocab_Prefix, Demon_Prefix, Preliminary),
     maplist(write(Stream), Preliminary),
     write(Stream, '\n\n'),
     append(Triples, TriplesFlatten),
@@ -36,14 +36,15 @@ evolution_info_([string(Name)-pairs([string("lvl")-number(Lv), string("result")-
     evolution_info_(Rest, [Evolution_Triples|Acc], Triples).
 
 evolution_triples(Name, Lv, Result, Triples) :-
-    replace_space(Name, NameCurated, "_"),
-    append(["<",NameCurated,">" , " a ", "vocab:EvolutionRule", " ;\n"], Declaration_Triple),
+    replace_space(Name, Name_Curated, "_"),
+    replace_space(Result, Result_Curated, "_"),
+    append(["<",Name_Curated,">" , " a ", "vocab:EvolutionRule", " ;\n"], Declaration_Triple),
     number_chars(Lv, LvChar),
     append(["\t","vocab:evolutionLevel ", LvChar, ";\n" ], Lv_Triple),
-    append(["\t vocab:demonResult demon:", Result, " .\n" ], Result_Triple),
+    append(["\tvocab:demonResult demon:", Result_Curated, " .\n" ], Result_Triple),
     append([Declaration_Triple, Lv_Triple, Result_Triple], Triples).
 
-preliminary(Iri, VocabPrefix, DemonPrefix, Preliminary) :-
+preliminary(Iri, Vocab_Prefix, Demon_Prefix, Preliminary) :-
     Template = "# This data  is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/.\n\
 # Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/\n\
 \n\
@@ -63,5 +64,5 @@ preliminary(Iri, VocabPrefix, DemonPrefix, Preliminary) :-
     dct:created \"2025-05-05\"^^<http://www.w3.org/2001/XMLSchema#date> ;\n\
     dct:description \"This dataset is licensed under the ODbL; individual contents are under the DbCL.\" .",
     replace_template(Template, P0, Iri),
-    replace_template(P0, P1, VocabPrefix),
-    replace_template(P1, Preliminary, DemonPrefix).
+    replace_template(P0, P1, Vocab_Prefix),
+    replace_template(P1, Preliminary, Demon_Prefix).

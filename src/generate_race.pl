@@ -1,3 +1,11 @@
+/**
+smt-nocture-db-to-rdf: A generator of an RDF dataset of demon 
+information from the video game Shin Megami Tensei III: Nocturne
+Copyright (C) 2025  Bryan-Elliott Tam
+*/
+
+:- module(demon_generator, [generate_races/2]).
+
 :- use_module(library(serialization/json)).
 :- use_module(library(pio)).
 :- use_module(library(pairs)).
@@ -5,14 +13,17 @@
 :- use_module(library(lists)).
 :- use_module('./util.pl').
 
-generate_race_file(Iri, IriVocab) :- 
+/**
+* generate a race RDF dataset at `../output/race.ttl`
+*/
+generate_races(Iri, Vocab_Prefix) :- 
     fusion_chart(Json),
     get_races(Json, Json_race_list),
     json_race_list_to_list(Json_race_list, RaceList),
     open('../output/race.ttl', write, Stream),
-    license(Iri, License),
-    maplist(write(Stream), License),
-    maplist(race_triples(IriVocab), RaceList, TripleRaceList),
+    preliminary(Iri, Vocab_Prefix, Preliminary),
+    maplist(write(Stream), Preliminary),
+    maplist(race_triples, RaceList, TripleRaceList),
     append(TripleRaceList, TripleRaceListFlatten),
     write(Stream, '\n\n'),
     maplist(write(Stream), TripleRaceListFlatten),
@@ -33,21 +44,20 @@ json_race_list_to_list([string(Race)| Rest], RaceList) :- json_race_list_to_list
 
 json_race_list_to_list([string(Race)], [Race]).
 
-race_triples(IriVocab, Race, Triples) :- 
-    append(["<", Race, ">"], S),
-    A = "a",
-    append(["<", IriVocab, "Race", ">"], RaceRdfType),
-    Schema = "<https://schema.org/name>",
-    append([S," ", A, " ", RaceRdfType, ";\n", "\t", Schema, " ", "\"",Race, "\"", ".\n"], Triples).
+race_triples(Race, Triples) :- 
+    append(["<", Race, "> ", "a vocab:Race ;\n"], Race_Declaration),
+    append(["\t <https://schema.org/name> \"", Race, "\" .\n" ], Race_Name),
+    append([Race_Declaration, Race_Name], Triples).
 
-license(Iri, License) :-
-Template = "# This data  is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/.\n\
+preliminary(Iri, Vocab_Iri, Preliminary) :-
+    Template = "# This data  is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/.\n\
 # Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/\n\
 \n\
 @base <{}> .\n\
 \n\
 @prefix dct: <http://purl.org/dc/terms/> .\n\
 @prefix void: <http://rdfs.org/ns/void#> .\n\
+@prefix vocab: <{}> .\n\
 \n\
 <>\n\
     a void:Dataset ;\n\
@@ -57,4 +67,5 @@ Template = "# This data  is made available under the Open Database License: http
     dct:creator \"Bryan-Elliott Tam\" ;\n\
     dct:created \"2025-04-19\"^^<http://www.w3.org/2001/XMLSchema#date> ;\n\
     dct:description \"This dataset is licensed under the ODbL; individual contents are under the DbCL.\" .",
-replace_template(Template, License, Iri).
+    replace_template(Template, P0, Iri),
+    replace_template(P0, Preliminary, Vocab_Iri).

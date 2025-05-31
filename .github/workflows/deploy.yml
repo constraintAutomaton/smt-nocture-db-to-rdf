@@ -24,13 +24,13 @@ jobs:
           git checkout --orphan gh-pages
 
           # Don't ignore index.html
-          git rm --cached ./output/index.html
+          git rm --cached ./output/*
 
           # Remove all existing files from the branch
           git rm -rf .
 
           # Copy the generated output files into the root directory
-          cp -r output/* .
+          mv -r output/* .
 
           # Remove extra files
           rm -r output

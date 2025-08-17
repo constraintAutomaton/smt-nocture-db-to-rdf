@@ -1,0 +1,91 @@
+# This data  is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/.
+# Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/
+
+@base <https://constraintautomaton.github.io/smt-nocture-db-to-rdf/evolution_rules.ttl/> .
+
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix vocab: <https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl/> .
+@prefix demon: <https://constraintautomaton.github.io/smt-nocture-db-to-rdf/demon.ttl/> .
+
+<>
+    a void:Dataset ;
+    dct:title "Shin Megami Tensei Evolution Rule Dataset" ;
+    dct:license <http://opendatacommons.org/licenses/odbl/1.0/> ;
+    dct:rights <http://opendatacommons.org/licenses/dbcl/1.0/> ;
+    dct:creator "Bryan-Elliott Tam" ;
+    dct:created "2025-05-05"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    dct:description "This dataset is licensed under the ODbL; individual contents are under the DbCL." .
+
+<Throne> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 68;
+	vocab:demonResult demon:Uriel .
+<Suparna> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 58;
+	vocab:demonResult demon:Garuda .
+<Setanta> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 48;
+	vocab:demonResult demon:Cu_Chulainn .
+<Scathach> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 69;
+	vocab:demonResult demon:Skadi .
+<Sati> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 52;
+	vocab:demonResult demon:Parvati .
+<Pulukishi> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 53;
+	vocab:demonResult demon:Ganesha .
+<Pixie> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 6;
+	vocab:demonResult demon:High_Pixie .
+<Ongkhot> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 42;
+	vocab:demonResult demon:Hanuman .
+<Nozuchi> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 18;
+	vocab:demonResult demon:Xuanwu .
+<Nekomata> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 22;
+	vocab:demonResult demon:Senri .
+<Naga> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 32;
+	vocab:demonResult demon:Naga_Raja .
+<Momunofu> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 24;
+	vocab:demonResult demon:Arahabaki .
+<Mizuchi> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 38;
+	vocab:demonResult demon:Qing_Long .
+<Lilim> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 12;
+	vocab:demonResult demon:Lilith .
+<Koppa_Tengu> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 24;
+	vocab:demonResult demon:Karasu_Tengu .
+<Karasu_Tengu> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 33;
+	vocab:demonResult demon:Kurama_Tengu .
+<Jinn> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 48;
+	vocab:demonResult demon:Efreet .
+<Inugami> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 17;
+	vocab:demonResult demon:Makami .
+<High_Pixie> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 15;
+	vocab:demonResult demon:Queen_Mab .
+<Hanuman> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 50;
+	vocab:demonResult demon:Qitian_Dasheng .
+<Gogmagog> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 60;
+	vocab:demonResult demon:Albion .
+<Dis> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 27;
+	vocab:demonResult demon:Valkyrie .
+<Beelzebub> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 86;
+	vocab:demonResult demon:Beelzebub_Fly .
+<Abaddon> a vocab:EvolutionRule ;
+	vocab:evolutionLevel 74;
+	vocab:demonResult demon:Alciel .

@@ -1,0 +1,156 @@
+# This data  is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/.
+# Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/
+
+@base <https://constraintautomaton.github.io/smt-nocture-db-to-rdf/vocabulary.ttl/> .
+
+@prefix rdf: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdfs: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <https://schema.org/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+
+<>
+    a void:Dataset ;
+    dct:title "Shin Megami Tensei Vocabulary Dataset" ;
+    dct:license <http://opendatacommons.org/licenses/odbl/1.0/> ;
+    dct:rights <http://opendatacommons.org/licenses/dbcl/1.0/> ;
+    dct:creator "Bryan-Elliott Tam";
+    dct:created "2025-04-19"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    dct:description "This dataset is licensed under the ODbL; individual contents are under the DbCL." .
+
+<DemonSmt3> a owl:Class ;
+    rdfs:label "A demon from Shin Megami Tensei III"@en ; 
+    rdfs:label "Un démon du jeu Shin Megami Tensei III"@fr ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (
+            [ a owl:Restriction ;
+              owl:onProperty <isOfRace> ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty <hasBasedLevel> ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty schema:name ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty <cannotBeFusedWithNormalFusion>;
+              owl:minQualifiedCardinality "0"^^xsd:nonNegativeInteger ;
+              owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger  
+            ]
+        )                             
+    ] .
+
+<Race> a owl:Class ;
+    rdfs:label "A race of demon"@en ; 
+    rdfs:label "Une race de démon"@fr ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (
+            [ a owl:Restriction ;
+              owl:onProperty schema:name ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+        )                             
+    ] .
+
+<hasBasedLevel> a owl:ObjectProperty ;
+    rdfs:label "Has a base level of"@en ; 
+    rdfs:label "À un niveau initial de"@fr ;
+    rdfs:comment "Define the initial demon when it is recruited."@en ;
+    rdfs:comment "Définie le niveau d'un démon quand il est recruté."@fr ;
+
+    rdfs:domain <DemonSmt3> ;
+    rdfs:range xsd:integer .
+
+<isOfRace> a owl:ObjectProperty ;
+    rdfs:label "Is of the demon race"@en ; 
+    rdfs:label "Est de la race de démon"@fr ;
+    rdfs:comment "Define the race of a demon."@en ;
+    rdfs:comment "Définie la race d'un démon."@fr ;
+
+    rdfs:domain <DemonSmt3> ;
+    rdfs:range <Race> .
+
+<Rule> a owl:Class;
+  rdfs:label "A rule produce a demon"@en ;
+  rdfs:label "Une règle pour créer un démon"@fr .
+
+<EvolutionRule> a owl:Class;
+  rdfs:subClassOf <Rule> ;
+  rdfs:label "A evolution rule."@en ; 
+  rdfs:label "Une règle d'évolution"@fr ;
+  rdfs:comment "A rule that descibe the evolution of a demon after a certain level."@en ;
+  rdfs:comment "Une règle qui décrit l'évolution d'un démon après qu'il est atteint un certain niveau."@fr .
+
+<evolutionLevel> a owl:ObjectProperty ;
+    rdfs:label "The level at which the demon evolves."@en ; 
+    rdfs:label "Le niveau auquel le démon évolue"@fr ;
+
+    rdfs:domain <EvolutionRule> ;
+    rdfs:range xsd:nonNegativeInteger .
+  
+<demonResult> a owl:ObjectProperty ;
+  rdfs:label "Un démon résultant de l'application d'une règle."@en ; 
+  rdfs:label "A demon resulting from the application of a rule."@fr ;
+
+  rdfs:domain <Rule>;
+  rdfs:range <DemonSmt3>.
+
+<NormalFusionRule> a owl:Class ;
+    rdfs:subClassOf <Rule> ;
+    rdfs:label "A normal fusion rule for two demons."@en ; 
+    rdfs:label "Une règle normal de fusion de deux démons"@fr ;
+    rdfs:comment "A normal fusion rule. It describes how the fusion of two demons of certain races produces a demon of another race."@en ;
+    rdfs:comment "Une règle de fusion normal. La règle décrit comment la fusion de deux démons de certaines races produit un démon d'une autre race."@fr ;
+
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (
+            [ a owl:Restriction ;
+              owl:onProperty <withRace1> ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty <withRace2> ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+            [ a owl:Restriction ;
+              owl:onProperty <fusionRaceResult> ;
+              owl:cardinality "1"^^xsd:nonNegativeInteger 
+            ]
+        )                             
+    ] .
+
+<withRace1> a owl:ObjectProperty ;
+    rdfs:label "When fused with a first demon of the race"@en ; 
+    rdfs:label "Est fusionné avec un premier démon de la race"@fr ;
+
+    rdfs:domain <NormalFusionRule> ;
+    rdfs:range <Race> .
+
+<withRace2> a owl:ObjectProperty ;
+    rdfs:label "When fused with a second demon of the race"@en ; 
+    rdfs:label "Est fusionné avec un deuxième démon de la race"@fr ;
+
+    rdfs:domain <NormalFusionRule> ;
+    rdfs:range <Race> .
+
+<fusionRaceResult> a owl:ObjectProperty ;
+    rdfs:label "The resulting demon race of a basic fusion rule"@en ; 
+    rdfs:label "La race de démon résultant d'une règle de fusion de base"@fr ;
+
+    rdfs:domain <Rule> ;
+    rdfs:range <Race> .
+
+<cannotBeFusedWithNormalFusion> a owl:ObjectProperty ;
+    rdfs:label "The demon cannot be recruited through basic fusion"@en ; 
+    rdfs:label "Le démon ne peut pas être recruté à la suite d'une fusion de base"@fr ;
+
+    rdfs:domain <DemonSmt3> ;
+    rdfs:range xsd:boolean .
